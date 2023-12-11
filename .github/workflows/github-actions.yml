@@ -63,9 +63,9 @@ jobs:
       - name: deploy to server
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: 165.227.96.233
-          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkVaEtadABZxiFEyCV/gO4uTzCkqh6W+D7QvtwbfvA66fOHndrJ5JZElOQp2fl6A9x50qZ9K2Nt1C0Hr92aMXgokAK2U5atVwAOZ/B3YYjWol8XlGSE06K67sgfvq1qAJLFUMsW6ZUjScsRrqcenEfFjJa6L8qWBFJ4Jy4nObvDiKbW5RueEXMTkxoxrHXabymsQctcETKYt4OXw36Hig3RqkM9uODJTbc66a1iSItDwWGyaQ5ic3PUb3gYb8aJzY2rNH5+RPtZHnzQlHStrrJMl//KraUOnXO5vsI0Y/rWn43/uIteV5Q2xmyarAkXDfRMfbEjXh/F6/vwHFkRm5tkAtiGVNYZL++0CMSwo2YQWBRSR1Pxe8dhHC6r7dbOrVQZ9wqXgv5Z4KNINv+/kUjHIN6yhful53LkMO157gi4SjFywDVLKfN/L1C10EM1Y+t3Box1yC2iGRjab0NvPy7OOjQfPLkAvl7LZQyZPcEC9Ni/rAHqi/OFTP6H8KRdxXMIvGKsm2SP/yuZwitsm4Z83hLxWRThcRDp9WsOWjeD8MQogguwaWKaOEf+NHpV6cCOgAGXW3YdM0vUqjXxRs5aGxmqdNuETB57ogNIuTiDc4TOSSrMiWEjJ4I3sdK7O0gIZmR8Nznu4DxZjMGEAf+CPdgPOBk4twGX6QBGHSPtQ== yowelikachala@gmail.com
-          username: root
+          host: ${{secrets.SSH_HOST}}
+          key: ${{secrets.SSH_KEY}}
+          username: ${{secrets.SSH_USERNAME}}
 
           script:
             cd /var/www/YowFitWeb
