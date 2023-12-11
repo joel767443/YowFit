@@ -56,3 +56,21 @@ jobs:
 
       - name: Compile assets
         run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy to server
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.SSH_HOST}}
+          key: ${{secrets.SSH_KEY}}
+          username: ${{secrets.SSH_USER}}
+
+          script:
+            cd /var/www/YowFitWeb
+            git remote update
+            git pull origin main
+            composer install
+            npm install
+            php artisan migrate
