@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Web\CalendarEntryController;
+use App\Http\Controllers\Web\ExerciseController;
+use App\Http\Controllers\Web\MealController;
+use App\Http\Controllers\Web\ScheduleController;
+use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\WeightTrackingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +25,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get("schedule", [ScheduleController::class, "index"])->name('schedule');
-Route::get("meals", [ScheduleController::class, "index"])->name('meals');
-Route::get("exercises", [ScheduleController::class, "index"])->name('exercises');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('users', UserController::class);
+    Route::resource('schedules', ScheduleController::class);
+    Route::resource('exercises', ExerciseController::class);
+    Route::resource('meals', MealController::class);
+    Route::resource('weight-tracking', WeightTrackingController::class);
+    Route::resource('calendar-entries', CalendarEntryController::class);
+});
+

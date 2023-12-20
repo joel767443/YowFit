@@ -49,17 +49,18 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('meals') }}" class="nav-link">Meals</a>
+                                <a href="{{ url('meals') }}" class="nav-link">Meals</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('exercises') }}" class="nav-link">Exercises</a>
+                                <a href="{{ url('exercises') }}" class="nav-link">Exercises</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('schedule') }}" class="nav-link">Schedule</a>
+                                <a href="{{ url('users') }}" class="nav-link">Users</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

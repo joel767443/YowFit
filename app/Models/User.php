@@ -3,14 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use function MongoDB\BSON\toJSON;
 
+/**
+ *
+ * @method static create(array $all)
+ * @property int $id
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -46,32 +50,27 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * @return HasOne
+     */
+    public function schedules(): HasOne
+    {
+        return $this->hasOne(Schedule::class);
+    }
 
     /**
-     * @return array[]
+     * @return HasOne
      */
-    public function todaySchedules(): array
+    public function weightTracking(): HasOne
     {
-        return [
-            [
-                "id" => 1,
-                "name" => "Yoweli",
-                "start_time" => Carbon::now(),
-                "end_time" => Carbon::now(),
-            ],
-            [
-                "id" => 2,
-                "name" => "kachala",
-                "start_time" => Carbon::now(),
-                "end_time" => Carbon::now(),
-            ],
-            [
-                "id" => 3,
-                "name" => "zone",
-                "start_time" => Carbon::now(),
-                "end_time" => Carbon::now(),
-            ]
-        ];
+        return $this->hasOne(WeightTracking::class);
+    }
 
+    /**
+     * @return HasMany
+     */
+    public function calendarEntries(): HasMany
+    {
+        return $this->hasMany(CalendarEntry::class);
     }
 }

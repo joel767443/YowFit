@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\api\ScheduleController;
-use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\Api\ApiCalendarEntryController;
+use App\Http\Controllers\Api\ApiExerciseController;
+use App\Http\Controllers\Api\ApiMealController;
+use App\Http\Controllers\Api\ApiScheduleController;
+use App\Http\Controllers\Api\ApiUserController;
+use App\Http\Controllers\Api\ApiWeightTrackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +24,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [UserController::class, "login"]);
-Route::post('register', [UserController::class, "register"]);
+Route::post('login', [ApiUserController::class, "login"]);
+Route::post('register', [ApiUserController::class, "register"]);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get("schedule", [ScheduleController::class, "schedule"]);
-    Route::get("users", [UserController::class, "index"]);
+    Route::resource('users', ApiUserController::class);
+    Route::resource('schedules', ApiScheduleController::class);
+    Route::resource('exercises', ApiExerciseController::class);
+    Route::resource('meals', ApiMealController::class);
+    Route::resource('weight-tracking', ApiWeightTrackingController::class);
+    Route::resource('calendar-entries', ApiCalendarEntryController::class);
 });
