@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [UserController::class, "login"]);
 Route::post('register', [UserController::class, "register"]);
 
-Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get("schedule", [ScheduleController::class, "schedule"]);
+    Route::get("users", [UserController::class, "index"]);
 });

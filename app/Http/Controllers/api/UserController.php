@@ -162,4 +162,12 @@ class UserController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        return response()->json(User::all());
+    }
 }
