@@ -53,12 +53,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ url('meals') }}" class="nav-link">Meals</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('exercises') }}" class="nav-link">Exercises</a>
-                            </li>
+
                             <li class="nav-item">
                                 <a href="{{ url('users') }}" class="nav-link">Users</a>
                             </li>
