@@ -14,16 +14,13 @@ return new class extends Migration
         Schema::create('calendar_entries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('schedule_id');
-            $table->unsignedBigInteger('exercise_id')->nullable();
-            $table->unsignedBigInteger('recipe_id')->nullable();
-            $table->enum('activity_type', ['exercise', 'meal', 'work'])->nullable();
+            $table->unsignedBigInteger('entry_type_id');
+            $table->string('day_of_week');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
-            $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade');
-            $table->foreign('recipe_id')->references('id')->on('meals')->onDelete('cascade');
 
         });
     }

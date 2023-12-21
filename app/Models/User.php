@@ -49,28 +49,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    /**
-     * @return HasOne
-     */
-    public function schedules(): HasOne
-    {
-        return $this->hasOne(Schedule::class);
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function weightTracking(): HasOne
-    {
-        return $this->hasOne(WeightTracking::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function calendarEntries(): HasMany
-    {
-        return $this->hasMany(CalendarEntry::class);
-    }
 }

@@ -55,35 +55,6 @@
                                 <p>No schedule available for this user.</p>
                             @endif
 
-                            <h5>Weight Tracking</h5>
-                            @if($user->weightTracking)
-                                <dl class="row">
-                                    <dt class="col-sm-3">Weight:</dt>
-                                    <dd class="col-sm-9">{{ $user->weightTracking->weight }}</dd>
-
-                                    <dt class="col-sm-3">Recorded At:</dt>
-                                    <dd class="col-sm-9">{{ $user->weightTracking->created_at }}</dd>
-                                </dl>
-                            @else
-                                <p>No weight tracking information available for this user.</p>
-                            @endif
-
-                            <h5>Calendar Entries</h5>
-                            @if($user->calendarEntries->isNotEmpty())
-                                <ul>
-                                    @foreach($user->calendarEntries as $entry)
-                                        <li>
-                                            Activity Type: {{ $entry->activity_type }}
-                                            Schedule ID: {{ $entry->schedule_id }}
-                                            Exercise ID: {{ $entry->exercise_id }}
-                                            Recipe ID: {{ $entry->recipe_id }}
-                                            Recorded At: {{ $entry->created_at }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @else
-                                <p>No calendar entries available for this user.</p>
-                            @endif
                     </div>
                 </div>
             </div>

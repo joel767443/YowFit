@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ExerciseSeeder::class,
             MealSeeder::class,
+            ActivitiesSeeder::class,
             ScheduleSeeder::class,
             CalendarEntrySeeder::class,
         ]);

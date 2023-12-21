@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->time('wakeup_time')->nullable();
-            $table->time('exercise_time')->nullable();
-            $table->time('eating_time')->nullable();
-            $table->time('sleeping_time')->nullable();
-            $table->time('relaxation_time')->nullable();
+            $table->unsignedBigInteger('activity_id');
+            $table->string('day_of_week');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('activity_id')->references('id')->on('activities');
         });
     }
 
