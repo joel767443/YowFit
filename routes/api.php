@@ -29,9 +29,4 @@ Route::post('register', [ApiUserController::class, "register"]);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('users', ApiUserController::class);
-    Route::resource('schedules', ApiScheduleController::class);
-    Route::resource('exercises', ApiExerciseController::class);
-    Route::resource('meals', ApiMealController::class);
-    Route::resource('weight-tracking', ApiWeightTrackingController::class);
-    Route::resource('calendar-entries', ApiCalendarEntryController::class);
 });
