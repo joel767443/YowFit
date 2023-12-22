@@ -20,42 +20,43 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <dl class="row">
+                            <dt class="col-sm-3">Name:</dt>
+                            <dd class="col-sm-9">{{ $user->name }}</dd>
 
-                            <dl class="row">
-                                <dt class="col-sm-3">Name:</dt>
-                                <dd class="col-sm-9">{{ $user->name }}</dd>
+                            <dt class="col-sm-3">Email:</dt>
+                            <dd class="col-sm-9">{{ $user->email }}</dd>
 
-                                <dt class="col-sm-3">Email:</dt>
-                                <dd class="col-sm-9">{{ $user->email }}</dd>
+                            <dt class="col-sm-3">Created At:</dt>
+                            <dd class="col-sm-9">{{ $user->created_at }}</dd>
+                        </dl>
 
-                                <dt class="col-sm-3">Created At:</dt>
-                                <dd class="col-sm-9">{{ $user->created_at }}</dd>
+                            <h2>Weekly Calendar</h2>
 
-                            </dl>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Activity</th>
+                                    <th>Description</th>
+                                    <th>url</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                            <h5>Schedule</h5>
-                            @if($user->schedule)
-                                <dl class="row">
-                                    <dt class="col-sm-3">Wake-up Time:</dt>
-                                    <dd class="col-sm-9">{{ $user->schedule->wakeup_time }}</dd>
-
-                                    <dt class="col-sm-3">Exercise Time:</dt>
-                                    <dd class="col-sm-9">{{ $user->schedule->exercise_time }}</dd>
-
-                                    <dt class="col-sm-3">Eating Time:</dt>
-                                    <dd class="col-sm-9">{{ $user->schedule->eating_time }}</dd>
-
-                                    <dt class="col-sm-3">Sleeping Time:</dt>
-                                    <dd class="col-sm-9">{{ $user->schedule->sleeping_time }}</dd>
-
-                                    <dt class="col-sm-3">Relaxation Time:</dt>
-                                    <dd class="col-sm-9">{{ $user->schedule->relaxation_time }}</dd>
-                                </dl>
-                            @else
-                                <p>No schedule available for this user.</p>
-                            @endif
-
+                                @foreach($calendarEntries as $record)
+                                <tr class="{{ $record->isCurrentTimeBetween ? 'table-success' : ''}}">
+{{--                                    <td>{{ $record->isCurrentTimeBetween }}</td>--}}
+                                    <td>{{ $record->start_time .'-'. $record->end_time }}</td>
+                                    <td> {{ $record->activityType->title }}</td>
+                                    <td>{{ $record->activityType->description }}</td>
+                                    <td>{{ $record->activityType->url }}</td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                     </div>
+
                 </div>
             </div>
         </div>

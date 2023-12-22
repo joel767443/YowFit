@@ -70,8 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    'timezone' => 'Africa/Johannesburg',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

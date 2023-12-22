@@ -12,7 +12,6 @@
                                 <input class="form-control form-control-sm" type="text"
                                        style="display: inline-block !important;width: auto !important;">
                                 <button class="btn btn-sm btn-success">Go</button>
-                                <a href="{{ route('users.create') }}" class="btn btn-sm btn-success">Add User</a>
                             </form>
                         </span>
                     </div>
