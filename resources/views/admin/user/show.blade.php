@@ -30,31 +30,7 @@
                             <dt class="col-sm-3">Created At:</dt>
                             <dd class="col-sm-9">{{ $user->created_at }}</dd>
                         </dl>
-
-                            <h2>Weekly Calendar</h2>
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Time</th>
-                                    <th>Activity</th>
-                                    <th>Description</th>
-                                    <th>url</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach($calendarEntries as $record)
-                                <tr class="{{ $record->isCurrentTimeBetween ? 'table-success' : ''}}">
-{{--                                    <td>{{ $record->isCurrentTimeBetween }}</td>--}}
-                                    <td>{{ $record->start_time .'-'. $record->end_time }}</td>
-                                    <td> {{ $record->activityType->title }}</td>
-                                    <td>{{ $record->activityType->description }}</td>
-                                    <td>{{ $record->activityType->url }}</td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                        <h5>Calendar</h5>
                     </div>
 
                 </div>
