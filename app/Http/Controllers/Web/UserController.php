@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\CalendarEvent;
 use App\Models\User;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -26,9 +29,13 @@ class UserController extends Controller
      */
     public function show(User $user): view
     {
+        $events = CalendarEvent::where('user_id', auth()->user()->id)
+            ->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])
+            ->get();
+
         return view('admin.user.show', [
             'user' => $user,
-            'currentTime' => Carbon::now()->format('H:i'),
+            'events' => $events
         ]);
 
     }
@@ -59,7 +66,7 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        $user->delete();
+        UserService::deleteUser($user);
         return redirect('users');
     }
 }

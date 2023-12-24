@@ -30,7 +30,6 @@
                             <dt class="col-sm-3">Created At:</dt>
                             <dd class="col-sm-9">{{ $user->created_at }}</dd>
                         </dl>
-                        <h5>Calendar</h5>
                     </div>
 
                 </div>
