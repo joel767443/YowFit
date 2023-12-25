@@ -56,7 +56,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                    <div style="padding: 10px; margin-bottom: -12px">{{ $users->links() }} </div>
+                    <div style="padding: 10px; margin-bottom: -12px">{{ $users->appends(request()->input())->links() }}</div>
                 </div>
             </div>
         </div>

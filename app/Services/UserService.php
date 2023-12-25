@@ -38,8 +38,10 @@ class UserService
     {
         return User::when($request->input('search'), function ($query, $search) {
             return $query->where(function ($query) use ($search) {
-                $query->where('email', 'like', '%' . $search . '%')
-                    ->orWhere('name', 'like', '%' . $search . '%');
+                $query->where('users.email', 'like', '%' . $search . '%')
+                    ->orWhere('users.name', 'like', '%' . $search . '%');
+            })->orWhereHas('userType', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'like', '%' . $search . '%');
             });
         })->paginate(env('PER_PAGE'));
     }
