@@ -1,4 +1,5 @@
-name: CI
+name: CI/CD
+
 on:
   pull_request:
     branches:
@@ -22,11 +23,12 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
-      - name: Cache composer dependencies
+      - name: Cache Composer Dependencies
         uses: actions/cache@v2
         with:
           path: vendor
@@ -34,43 +36,40 @@ jobs:
           restore-keys: |
             composer-
 
-      - name: Install PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1
 
-      - name: Install composer dependencies
-        run: |
-          composer install --no-scripts
+      - name: Install Composer Dependencies
+        run: composer install --no-scripts
 
       - name: Prepare Laravel Application
         run: |
           cp .env.ci .env
           php artisan key:generate
 
-      - name: Run Test suite
+      - name: Run Test Suite
         run: php artisan test
 
-      - name: Install NPM dependencies
-        run: npm install
-
-      - name: Compile assets
-        run: npm run build
+      - name: Install NPM Dependencies and Compile Assets
+        run: |
+          npm install
+          npm run build
 
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: deploy to server
+      - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{secrets.SSH_HOST}}
-          key: ${{secrets.SSH_KEY}}
-          username: ${{secrets.SSH_USERNAME}}
-
-          script:
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+          script: |
             cd /var/www/YowFitWeb
             git remote update
             git pull origin main
-            composer install
-            npm install
-            php artisan migrate
+            composer install --no-dev --optimize-autoloader
+            npm install --production
+            php artisan migrate --force
