@@ -1,6 +1,6 @@
 # Introducing Yo Health: A Comprehensive Health Tracking Application
 
-Develop a resilient database architecture for **Yo Health**, an innovative health app built on Laravel that aims to monitor and enhance users' overall well-being. The app encompasses diverse features, including calendar scheduling, exercise tracking, recipe management, weight monitoring, and seamless work schedule integration.
+Am develop a resilient database architecture for **Yo Health**, an innovative health app built on Laravel that aims to monitor and enhance users' overall well-being. The app encompasses diverse features, including calendar scheduling, exercise tracking, recipe management, weight monitoring, and seamless work schedule integration.
 
 ## Scheduling System:
 
