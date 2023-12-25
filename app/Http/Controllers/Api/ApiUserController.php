@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -101,6 +102,7 @@ class ApiUserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'role' => 'normal',
                 'password' => Hash::make($request->password)
             ]);
 

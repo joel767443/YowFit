@@ -17,13 +17,11 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        $userTypes = UserType::all();
 
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
-            'user_type_id' => 1,
             'role' => 'admin',
         ]);
 
@@ -31,7 +29,6 @@ class UsersTableSeeder extends Seeder
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'user_type_id' => 2,
                 'password' => Hash::make('password'),
                 'role' => 'normal',
             ]);

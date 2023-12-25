@@ -56,6 +56,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                    <div style="padding: 10px; margin-bottom: -12px">{{ $users->links() }} </div>
                 </div>
             </div>
         </div>

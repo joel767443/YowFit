@@ -3,12 +3,15 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ *
+ */
 class UserService
 {
-
     /**
      * @param User $instance
      * @return void
