@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
-            'role' => 'admin',
+            'user_type_id' => 1,
         ]);
 
         foreach (range(1, 50) as $index) {
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('password'),
-                'role' => 'normal',
+                'user_type_id' => 2,
             ]);
         }
     }

@@ -39,9 +39,8 @@ class UserService
         return User::when($request->input('search'), function ($query, $search) {
             return $query->where(function ($query) use ($search) {
                 $query->where('email', 'like', '%' . $search . '%')
-                    ->orWhere('role', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%');
             });
-        })->paginate(10);
+        })->paginate(env('PER_PAGE'));
     }
 }

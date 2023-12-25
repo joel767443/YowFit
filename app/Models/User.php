@@ -4,7 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,44 +56,19 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return HasMany
-     */
-    public function schedules(): HasMany
-    {
-        return $this->hasMany(Schedule::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function weightLogs(): HasMany
-    {
-        return $this->hasMany(WeightLog::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function calendarEvents(): HasMany
-    {
-        return $this->hasMany(CalendarEvent::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function workSchedules(): HasMany
-    {
-        return $this->hasMany(WorkSchedule::class);
-    }
-
-    /**
      * @return bool
      */
     public function isAdmin(): bool
     {
-        // Implement logic to check if the user is an administrator
-        return $this->role === 'admin'; // Adjust this based on your actual implementation
+        return 'admin' === $this->userType()->role;
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function userType(): BelongsTo
+    {
+        return $this->belongsTo(UserType::class);
     }
 
 }
