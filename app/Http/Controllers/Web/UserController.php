@@ -4,23 +4,23 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\CalendarEvent;
 use App\Models\User;
 use App\Services\UserService;
-use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
+     * @param Request $request
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('admin.user.index', ['users' => User::all()]);
+        return view('admin.user.index', [
+            'users' => UserService::getPaginatedUsers($request),
+        ]);
     }
 
     /**
@@ -29,13 +29,13 @@ class UserController extends Controller
      */
     public function show(User $user): view
     {
-        $events = CalendarEvent::where('user_id', auth()->user()->id)
-            ->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])
-            ->get();
+//        $events = CalendarEvent::where('user_id', auth()->user()->id)
+//            ->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])
+//            ->get();
 
         return view('admin.user.show', [
             'user' => $user,
-            'events' => $events
+//            'events' => $events
         ]);
 
     }
@@ -69,4 +69,5 @@ class UserController extends Controller
         UserService::deleteUser($user);
         return redirect('users');
     }
+
 }

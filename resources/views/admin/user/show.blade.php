@@ -29,6 +29,9 @@
 
                             <dt class="col-sm-3">Created At:</dt>
                             <dd class="col-sm-9">{{ $user->created_at }}</dd>
+
+                            <dt class="col-sm-3">Role:</dt>
+                            <dd class="col-sm-9">{{ $user->role }}</dd>
                         </dl>
                     </div>
 

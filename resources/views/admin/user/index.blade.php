@@ -8,8 +8,8 @@
                     <div class="card-header">
                         <h5 class="float-start">Users</h5>
                         <span class="float-end">
-                            <form class="form-inline">
-                                <input class="form-control form-control-sm" type="text"
+                            <form action="{{ route('users.index') }}" method="GET" class="form-inline">
+                                <input class="form-control form-control-sm" type="text" name="search" value="{{ old("search") }}"
                                        style="display: inline-block !important;width: auto !important;">
                                 <button class="btn btn-sm btn-success">Go</button>
                             </form>
@@ -33,6 +33,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </thead>
@@ -40,8 +41,8 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role }}</td>
                                     <td align="right">
                                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
