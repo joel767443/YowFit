@@ -18,12 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-//            CalendarEventsTableSeeder::class,
-//            SchedulesTableSeeder::class,
-//            ExercisesTableSeeder::class,
-//            RecipesTableSeeder::class,
-//            WeightLogsTableSeeder::class,
-//            WorkSchedulesTableSeeder::class,
+            UserStatusSeeder::class,
+            MealSeeder::class,
+            ExerciseSeeder::class,
+            EatingTimeSeeder::class,
+            ExerciseTimeSeeder::class,
+            RelaxationTimeSeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }

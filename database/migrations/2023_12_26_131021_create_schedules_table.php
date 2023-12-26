@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('ingredients');
-            $table->text('instructions');
+            $table->foreignId('user_id')->constrained();
+            $table->string('day_of_week');
+            $table->time('wakeup_time');
+            $table->time('sleeping_time');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('schedules');
     }
 };

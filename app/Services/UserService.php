@@ -42,6 +42,8 @@ class UserService
                     ->orWhere('users.name', 'like', '%' . $search . '%');
             })->orWhereHas('userType', function ($subQuery) use ($search) {
                 $subQuery->where('name', 'like', '%' . $search . '%');
+            })->orWhereHas('userStatus', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'like', '%' . $search . '%');
             });
         })->paginate(env('PER_PAGE'));
     }

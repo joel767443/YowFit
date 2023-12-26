@@ -9,6 +9,7 @@
                         <h5>
                             {{ $user->name }}
                             <span class="float-end">
+                                <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-sm btn-secondary">Edit</a>
                                 <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary">Back to Users</a>
                             </span>
                         </h5>
@@ -31,7 +32,10 @@
                             <dd class="col-sm-9">{{ $user->created_at }}</dd>
 
                             <dt class="col-sm-3">Role:</dt>
-                            <dd class="col-sm-9">{{ $user->role }}</dd>
+                            <dd class="col-sm-9">{{ $user->userType->name }}</dd>
+
+                            <dt class="col-sm-3">Status:</dt>
+                            <dd class="col-sm-9">{{ $user->userStatus->name }}</dd>
                         </dl>
                     </div>
 

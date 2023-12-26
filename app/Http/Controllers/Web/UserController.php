@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserStatus;
+use App\Models\UserType;
 use App\Services\UserService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -46,7 +48,11 @@ class UserController extends Controller
      */
     public function edit(User $user): view
     {
-        return view('admin.user.edit', ['user' => $user]);
+        return view('admin.user.edit', [
+            'user' => $user,
+            'userTypes' => UserType::all(),
+            'userStatuses' => UserStatus::all(),
+        ]);
     }
 
     /**

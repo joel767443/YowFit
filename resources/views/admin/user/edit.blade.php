@@ -39,9 +39,18 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="role">Role:</label>
-                                <select class="form-control" id="role" name="role">
-                                    <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="user" {{ $user->role === 'normal' ? 'selected' : '' }}>Normal</option>
+                                <select class="form-control" id="role" name="user_type_id">
+                                    @foreach($userTypes as $userType)
+                                    <option value="{{ $userType->id }}" {{ $userType->slug === $user->userType->slug ? 'selected' : '' }}> {{ $userType->name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="role">Status:</label>
+                                <select class="form-control" id="role" name="user_status_id">
+                                    @foreach($userStatuses as $userStatus)
+                                    <option value="{{ $userStatus->id  }}" {{ $userStatus->slug === $user->userStatus->slug ? 'selected' : '' }}> {{ $userStatus->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-sm btn-primary">Update User</button>

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,13 +16,13 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static create(array $all)
  * @method static pluck(string $string)
  * @method static when(mixed $search, \Closure $param)
+ * @method static where(string $string, string $string1)
  * @property int $id
- * @property mixed $role
  * @property mixed $schedules
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type_id',
+        'user_status_id',
     ];
 
     /**
@@ -60,7 +62,7 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return 'admin' === $this->userType()->role;
+        return 'admin' === $this->userType()->name;
     }
 
     /**
@@ -69,6 +71,14 @@ class User extends Authenticatable
     public function userType(): BelongsTo
     {
         return $this->belongsTo(UserType::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function userStatus(): BelongsTo
+    {
+        return $this->belongsTo(UserStatus::class);
     }
 
 }

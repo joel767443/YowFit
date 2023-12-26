@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calendar_events', function (Blueprint $table) {
+        Schema::create('exercises', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('event_type');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->string('name');
+            $table->string('description');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calendar_events');
+        Schema::dropIfExists('exercises');
     }
 };

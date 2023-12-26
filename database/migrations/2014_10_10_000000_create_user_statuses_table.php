@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,13 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weight_logs', function (Blueprint $table) {
+        Schema::create('user_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('weight', 8, 2);
-            $table->timestamp('logged_at')->nullable();
+            $table->string('name');
+            $table->string('slug');
+            $table->smallInteger('sort_order')->default(0);
             $table->timestamps();
         });
+
+        Artisan::call("db:seed --class=UserStatusSeeder");
     }
 
     /**
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('weight_logs');
+        Schema::dropIfExists('user_statuses');
     }
 };

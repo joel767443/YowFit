@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_types', function (Blueprint $table) {
+        Schema::create('relaxation_times', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("slug");
-            $table->smallInteger('sort_order')->default(0);
+            $table->time('time');
+            $table->string('description');
             $table->timestamps();
         });
-
-        Artisan::call("db:seed --class=UserTypeSeeder");
     }
 
     /**
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_types');
+        Schema::dropIfExists('relaxation_times');
     }
 };

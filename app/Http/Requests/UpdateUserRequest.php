@@ -27,6 +27,7 @@ class UpdateUserRequest extends FormRequest
             'email' => 'email|max:255',
             'password' => 'nullable|string|min:6',
             'user_type_id' => 'integer',
+            'user_status_id' => 'integer',
         ];
     }
 }
