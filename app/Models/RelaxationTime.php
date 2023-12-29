@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RelaxationTime extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'time',
+        'description',
+    ];
 }

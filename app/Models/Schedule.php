@@ -67,13 +67,22 @@ class Schedule extends Model
      *
      * @param int $userId
      * @param string $dayOfWeek
-     * @return Builder
+     * @return Model|null
      */
-    public static function getFullSchedule(int $userId, string $dayOfWeek): object
+    public static function getFullSchedule(int $userId, string $dayOfWeek): Model|null
     {
         return self::with(['exerciseTimes', 'eatingTimes', 'relaxationTimes'])
             ->where('user_id', '=', $userId)
             ->where('day_of_week', '=', $dayOfWeek)
+            ->with(['exerciseTimes' => function ($query) {
+                $query->orderBy('time');
+            }])
+            ->with(['eatingTimes' => function ($query) {
+                $query->orderBy('time');
+            }])
+            ->with(['relaxationTimes' => function ($query) {
+                $query->orderBy('time');
+            }])
             ->first();
     }
 }

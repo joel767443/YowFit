@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\WeightTrackingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +26,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class);
+    Route::resource('schedules', ScheduleController::class);
+    Route::get('weight-tracking', [WeightTrackingController::class, 'show']);
 });
 

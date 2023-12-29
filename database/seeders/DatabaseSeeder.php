@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ExerciseTimeSeeder::class,
             RelaxationTimeSeeder::class,
             ScheduleSeeder::class,
+            WeightTrackingSeeder::class,
         ]);
     }
 }
