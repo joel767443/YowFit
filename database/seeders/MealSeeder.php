@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Meal;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class MealSeeder
+ */
 class MealSeeder extends Seeder
 {
     /**

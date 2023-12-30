@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Meal;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class EatingTimeSeeder
+ */
 class EatingTimeSeeder extends Seeder
 {
     /**
@@ -16,9 +18,9 @@ class EatingTimeSeeder extends Seeder
     public function run(): void
     {
         $eatingTimes = [
-            Carbon::createFromTime(7, 0, 0),
-            Carbon::createFromTime(13, 0, 0),
-            Carbon::createFromTime(19, 0, 0),
+            Carbon::createFromTime(7),
+            Carbon::createFromTime(13),
+            Carbon::createFromTime(19),
         ];
 
         foreach ($eatingTimes as $eatingTime) {

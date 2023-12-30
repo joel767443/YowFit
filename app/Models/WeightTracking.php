@@ -9,11 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class WeightTracking
  * @method static create(array $array)
+ * @method static where(string $string, int|string|null $id)
  */
 class WeightTracking extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'weight_tracking';
 
     /**

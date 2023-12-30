@@ -2,13 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 
+/**
+ * Class UsersTableSeeder
+ */
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -25,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'user_type_id' => 1,
         ]);
 
-        foreach (range(1, 5) as $index) {
+        foreach (range(1, 5) as $ignored) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,

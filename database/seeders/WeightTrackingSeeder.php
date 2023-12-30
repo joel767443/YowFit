@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\WeightTracking;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class WeightTrackingSeeder
+ */
 class WeightTrackingSeeder extends Seeder
 {
     /**

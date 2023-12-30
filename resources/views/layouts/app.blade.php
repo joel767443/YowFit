@@ -53,27 +53,31 @@
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a href="{{ url('meals') }}" class="nav-link">Meals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('exercises') }}" class="nav-link">Exercises</a>
+                            </li>
+                            @if(auth()->user()->isAdmin())
                             <li class="nav-item">
                                 <a href="{{ url('users') }}" class="nav-link">Users</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ url('schedules') }}" class="nav-link">Schedules</a>
-                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a href="{{ url('weight-tracking') }}" class="dropdown-item">Weight log</a>
+                                    <a href="{{ url('my-schedule') }}" class="dropdown-item">My schedule</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <a href="{{ url('weight-tracking') }}" class="dropdown-item">Weight Tracking</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

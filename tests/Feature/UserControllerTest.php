@@ -31,8 +31,8 @@ class UserControllerTest extends TestCase
             'user_type_id' => $userType->id,
         ];
 
-        $response = $this->put("/users/{$user->id}", $newUserData);
-        $response->assertRedirect("/users/{$user->id}");
+        $response = $this->put("/users/$user->id", $newUserData);
+        $response->assertRedirect("/users/$user->id");
         $this->assertDatabaseHas('users', $newUserData);
     }
 
@@ -41,7 +41,7 @@ class UserControllerTest extends TestCase
      */
     public function test_update_user_with_invalid_data()
     {
-        $user =  User::factory()->create();
+        $user = User::factory()->create();
         Auth::login($user);
 
         $invalidUserData = [
@@ -51,7 +51,7 @@ class UserControllerTest extends TestCase
             'user_type_id' => 'non-integer-value',
         ];
 
-        $response = $this->put("/users/{$user->id}", $invalidUserData);
+        $response = $this->put("/users/$user->id", $invalidUserData);
 
         $response->assertSessionHasErrors(['name', 'email', 'password', 'user_type_id']);
     }
@@ -61,16 +61,16 @@ class UserControllerTest extends TestCase
      */
     public function test_update_user_with_partial_data()
     {
-        $user =  User::factory()->create();
+        $user = User::factory()->create();
         Auth::login($user);
 
         $newUserData = [
             'name' => $this->faker->name,
         ];
 
-        $response = $this->put("/users/{$user->id}", $newUserData);
+        $response = $this->put("/users/$user->id", $newUserData);
 
-        $response->assertRedirect("/users/{$user->id}");
+        $response->assertRedirect("/users/$user->id");
         $this->assertDatabaseHas('users', ['name' => $newUserData['name']]);
     }
 
@@ -79,7 +79,7 @@ class UserControllerTest extends TestCase
      */
     public function test_update_non_existing_user()
     {
-        $user =  User::factory()->create();
+        $user = User::factory()->create();
         Auth::login($user);
         $response = $this->put("/users/999", ['name' => 'John Doe']);
 
@@ -95,11 +95,11 @@ class UserControllerTest extends TestCase
         Auth::login($user);
         $newUserType = UserType::factory()->create();
 
-        $response = $this->put("/users/{$user->id}", [
+        $response = $this->put("/users/$user->id", [
             'user_type_id' => $newUserType->id,
         ]);
 
-        $response->assertRedirect("/users/{$user->id}");
+        $response->assertRedirect("/users/$user->id");
         $this->assertDatabaseHas('users', ['user_type_id' => $newUserType->id]);
     }
 }

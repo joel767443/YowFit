@@ -6,10 +6,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="float-start">Users</h5>
+                        <h5 class="float-start">Meals</h5>
                         <span class="float-end">
-                            <form action="{{ route('users.index') }}" method="GET" class="form-inline">
-                                <input class="form-control form-control-sm" type="text" autocomplete="off" name="search" value="{{ old('search') }}"
+                            <form action="{{ route('meals.index') }}" method="GET" class="form-inline">
+                                <input autocomplete="off" class="form-control form-control-sm" type="text" name="search" value="{{ old('search') }}"
                                        style="display: inline-block !important;width: auto !important;">
                                 <button class="btn btn-sm btn-success">Go</button>
                             </form>
@@ -31,34 +31,24 @@
                         <table class="table table-striped table-hover mb-0">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
+                                <th>Meal</th>
+                                <th>Description</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($meals as $meal)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->userType->name }}</td>
-                                    <td>{{ $user->userStatus->name }}</td>
+                                    <td>{{ $meal->name }}</td>
+                                    <td>{{ $meal->description }}</td>
                                     <td align="right">
-                                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-                                        </form>
+                                        <a href="{{ route('meals.show', $meal->id) }}" class="btn btn-info btn-sm">View</a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                    <div style="padding: 10px; margin-bottom: -12px">{{ $users->appends(request()->input())->links() }}</div>
+                    <div style="padding: 10px; margin-bottom: -12px">{{ $meals->appends(request()->input())->links() }}</div>
                 </div>
             </div>
         </div>

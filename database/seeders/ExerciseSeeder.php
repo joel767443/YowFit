@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Exercise;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class ExerciseSeeder
+ */
 class ExerciseSeeder extends Seeder
 {
     /**

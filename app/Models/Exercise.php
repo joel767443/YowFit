@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static create(string[] $array)
+ * @method static search(mixed $input)
+ * @method static pluck(string $string)
+ * @property integer $id
  */
 class Exercise extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'name',
         'link',
@@ -26,5 +32,15 @@ class Exercise extends Model
     public function exerciseTimes(): HasMany
     {
         return $this->hasMany(ExerciseTime::class);
+    }
+
+    /**
+     * @param $query
+     * @param $keyword
+     * @return mixed
+     */
+    public function scopeSearch($query, $keyword): mixed
+    {
+        return $query->where('name', 'like', '%' . $keyword . '%');
     }
 }

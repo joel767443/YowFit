@@ -10,11 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('weight_tracking', function (Blueprint $table) {
+        Schema::create('schedule_activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('weight');
-            $table->timestamp('recorded_at')->nullable();
+            $table->foreignId('schedule_id')->constrained();
+            $table->string('description');
+            $table->enum('type', ['exercise', 'work', 'meals', 'relax']);
+            $table->date('activity_date');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('weight_tracking');
+        Schema::dropIfExists('schedule_activity_logs');
     }
 };

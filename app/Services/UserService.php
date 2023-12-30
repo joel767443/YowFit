@@ -3,12 +3,10 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 /**
- *
+ * Class UserService
  */
 class UserService
 {
@@ -18,16 +16,7 @@ class UserService
      */
     public static function deleteUser(User $instance): void
     {
-//        DB::transaction(function () use ($instance) {
-//            foreach ($instance->schedules as $schedule) {
-//                $schedule->exercises()->delete();
-//                $schedule->delete();
-//            }
-//            $instance->weightLogs()->delete();
-//            $instance->workSchedules()->delete();
-//            $instance->calendarEvents()->delete();
         $instance->delete();
-//        });
     }
 
     /**

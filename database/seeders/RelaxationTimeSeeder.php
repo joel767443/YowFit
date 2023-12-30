@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class RelaxationTimeSeeder
+ */
 class RelaxationTimeSeeder extends Seeder
 {
     /**
@@ -15,8 +17,8 @@ class RelaxationTimeSeeder extends Seeder
     public function run(): void
     {
         $eatingTimes = [
-            Carbon::createFromTime(12, 00, 0),
-            Carbon::createFromTime(20, 00, 0),
+            Carbon::createFromTime(12, 00),
+            Carbon::createFromTime(20, 00),
         ];
 
         foreach ($eatingTimes as $eatingTime) {

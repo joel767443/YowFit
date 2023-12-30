@@ -11,7 +11,11 @@ use App\Services\UserService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserController
+ */
 class UserController extends Controller
 {
     /**
@@ -31,15 +35,9 @@ class UserController extends Controller
      */
     public function show(User $user): view
     {
-//        $events = CalendarEvent::where('user_id', auth()->user()->id)
-//            ->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()])
-//            ->get();
-
         return view('admin.user.show', [
             'user' => $user,
-//            'events' => $events
         ]);
-
     }
 
     /**

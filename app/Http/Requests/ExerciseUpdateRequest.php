@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class CreateUserRequest
+ * Class ExerciseUpdateRequest
  */
-class CreateUserRequest extends FormRequest
+class ExerciseUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,9 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
+            'name' => '',
+            'description' => '',
+            'link' => '',
         ];
     }
 }

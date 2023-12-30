@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Exercise;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class ExerciseTimeSeeder
+ */
 class ExerciseTimeSeeder extends Seeder
 {
     /**
@@ -16,9 +18,9 @@ class ExerciseTimeSeeder extends Seeder
     public function run(): void
     {
         $exerciseTimes = [
-            Carbon::createFromTime(6, 0, 0),
-            Carbon::createFromTime(13, 30, 0),
-            Carbon::createFromTime(19, 30, 0),
+            Carbon::createFromTime(6),
+            Carbon::createFromTime(13, 30),
+            Carbon::createFromTime(19, 30),
         ];
 
         foreach ($exerciseTimes as $exerciseTime) {

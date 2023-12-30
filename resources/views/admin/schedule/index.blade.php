@@ -6,12 +6,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="float-start">Users</h5>
+                        <h5 class="float-start">Schedule for {{ $currentDayOfWeek . " " . now()->format('d-m-Y')  }}</h5>
                         <span class="float-end">
                              <span class="float-end">
-                                <a href="{{ url('schedules/' . $result['id'] . '/edit') }}" class="btn btn-sm btn-secondary">Delete</a>
-                                <a href="{{ url('schedules/' . $result['id'] . '/edit') }}" class="btn btn-sm btn-secondary">Edit</a>
-                                <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary">Back to Schedules</a>
+                                <a href="{{ url('schedules/' . $schedule->id . '/edit') }}" class="btn btn-sm btn-secondary">Edit</a>
                             </span>
                         </span>
 
@@ -23,27 +21,22 @@
                         </div>
                     @endif
 
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
                     <table class="table table-striped table-hover mb-0">
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($result as $time => $exerciseTime)
                             <tr>
-                                <td>{{ $exerciseTime }} {{ $result['id'] }}</td>
+                                <td>{{ $time }}</td>
+                                <td>{{ $exerciseTime }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-{{--                    <div style="padding: 10px; margin-bottom: -12px">{{ $users->appends(request()->input())->links() }}</div>--}}
                 </div>
             </div>
         </div>

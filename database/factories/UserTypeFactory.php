@@ -5,12 +5,16 @@ namespace Database\Factories;
 use App\Models\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
 /**
  * @extends Factory<UserType>
  */
 class UserTypeFactory extends Factory
 {
 
+    /**
+     * @var string
+     */
     protected $model = UserType::class;
 
     /**

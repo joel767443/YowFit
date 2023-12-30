@@ -7,9 +7,11 @@ use App\Models\ExerciseTime;
 use App\Models\RelaxationTime;
 use App\Models\Schedule;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class ScheduleSeeder
+ */
 class ScheduleSeeder extends Seeder
 {
     /**
