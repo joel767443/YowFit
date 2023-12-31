@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Exercise;
+use App\Models\ExerciseType;
 use Illuminate\Database\Seeder;
 
 /**
@@ -15,6 +16,8 @@ class ExerciseSeeder extends Seeder
      */
     public function run(): void
     {
+        $exerciseTypes = ExerciseType::pluck('id');
+
         $exercises = [
             [
                 'name' => 'Walking',
@@ -34,6 +37,7 @@ class ExerciseSeeder extends Seeder
             Exercise::create([
                 'name' => $exercise['name'],
                 'description' => $exercise['description'],
+                'exercise_type_id' => collect($exerciseTypes)->random()
             ]);
         }
     }

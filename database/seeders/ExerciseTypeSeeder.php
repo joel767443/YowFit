@@ -3,30 +3,28 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-/**
- * Class MealTypeSeeder
- */
-class MealTypeSeeder extends Seeder
+class ExerciseTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $mealTypes = [
-            "Breakfast",
-            "Lunch",
-            "Super",
-            "Snack"
+        $exerciseTypes = [
+            "Aerobics",
+            "Power lifting",
+            "Intense training",
+            "Casual"
         ];
 
-        foreach ($mealTypes as $type) {
+        foreach ($exerciseTypes as $type) {
 
-            DB::table('meal_types')->insert([
+            DB::table('exercise_types')->insert([
                 'name' => $type,
                 'slug' => Str::slug($type),
                 'created_at' => Carbon::now(),

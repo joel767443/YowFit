@@ -28,6 +28,9 @@
                             <dt class="col-sm-3">Description:</dt>
                             <dd class="col-sm-9">{{ $exercise->description }}</dd>
 
+                            <dt class="col-sm-3">Type:</dt>
+                            <dd class="col-sm-9">{{ $exercise->exerciseType->name }}</dd>
+
                             @if($exercise->link)
                             <dt class="col-sm-3">Link:</dt>
                             <dd class="col-sm-9">{{ $exercise->link }}</dd>

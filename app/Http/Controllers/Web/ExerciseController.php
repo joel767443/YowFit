@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ExerciseCreateRequest;
 use App\Http\Requests\ExerciseUpdateRequest;
 use App\Models\Exercise;
+use App\Models\ExerciseType;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -43,7 +45,26 @@ class ExerciseController extends Controller
     {
         return view('admin.exercise.edit', [
             'exercise' => $exercise,
+            'exerciseTypes' => ExerciseType::all(),
         ]);
+    }
+
+    /**
+     * @return View
+     */
+    public function create(): view
+    {
+        return view('admin.exercise.create', ['exerciseTypes' => ExerciseType::all()]);
+    }
+
+    /**
+     * @param ExerciseCreateRequest $request
+     * @return RedirectResponse
+     */
+    public function store(ExerciseCreateRequest $request): RedirectResponse
+    {
+        Exercise::create($request->validated());
+        return redirect('exercises')->with('success', 'Exercise stored.');
     }
 
     /**

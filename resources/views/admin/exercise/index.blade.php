@@ -12,6 +12,7 @@
                                 <input class="form-control form-control-sm" type="text" name="search" value=""
                                        style="display: inline-block !important;width: auto !important;">
                                 <button class="btn btn-sm btn-success">Go</button>
+                                <a href="{{ route('exercises.create') }}" class="btn btn-sm btn-success">Add</a>
                             </form>
                         </span>
                     </div>

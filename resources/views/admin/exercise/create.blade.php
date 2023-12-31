@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>{{ $exercise->name }}</h5>
+                        <h5>Create</h5>
                     </div>
 
                     <div class="card-body">
@@ -26,30 +26,29 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('exercises.update', $exercise->id) }}" method="POST">
+                        <form action="{{ route('exercises.store') }}" method="POST">
                             @csrf
-                            @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $exercise->name }}" >
+                                <input type="text" class="form-control" id="name" name="name" value="" >
                             </div>
                             <div class="form-group mb-2">
                                 <label for="exercise_type_id">Exercise Type:</label>
                                 <select class="form-control" id="exercise_type_id" name="exercise_type_id">
                                     @foreach($exerciseTypes as $type)
-                                        <option value="{{ $type->id }}" {{ $type->id == $exercise->exerciseType->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="email">Description:</label>
-                                <input type="text" class="form-control" id="description" name="description" value="{{ $exercise->description }}" >
+                                <input type="text" class="form-control" id="description" name="description" value="" >
                             </div>
                             <div class="form-group mb-2">
                                 <label for="email">Link:</label>
-                                <input type="text" class="form-control" id="link" name="link" value="{{ $exercise->link }}">
+                                <input type="text" class="form-control" id="link" name="link" value="">
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary">Update exercise</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Create</button>
                         </form>
                     </div>
                 </div>

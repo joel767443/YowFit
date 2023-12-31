@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -23,6 +24,7 @@ class Exercise extends Model
         'name',
         'link',
         'description',
+        'exercise_type_id'
     ];
 
     /**
@@ -42,5 +44,13 @@ class Exercise extends Model
     public function scopeSearch($query, $keyword): mixed
     {
         return $query->where('name', 'like', '%' . $keyword . '%');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function exerciseType(): BelongsTo
+    {
+        return $this->belongsTo(ExerciseType::class);
     }
 }

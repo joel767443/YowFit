@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             MealTypeSeeder::class,
             MealSeeder::class,
+            ExerciseTypeSeeder::class,
             ExerciseSeeder::class,
             EatingTimeSeeder::class,
             ExerciseTimeSeeder::class,
