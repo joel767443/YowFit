@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\EatingTime;
-use App\Models\ExerciseTime;
-use App\Models\RelaxationTime;
 use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -29,13 +26,6 @@ class ScheduleSeeder extends Seeder
             'Sunday',
         ];
 
-        // eating times
-        $eatingTimes = EatingTime::all();
-        // exercise times
-        $exerciseTimes = ExerciseTime::all();
-        // relaxing times
-        $relaxingTimes = RelaxationTime::all();
-
         // Seed schedules for each day of the week
         foreach ($daysOfTheWeek as $day) {
             $schedule = new Schedule([
@@ -45,18 +35,7 @@ class ScheduleSeeder extends Seeder
                 'sleeping_time' => '22:00:00',
             ]);
 
-            // Save the schedule to the database
             $schedule->save();
-
-            // Attach eating times
-            $schedule->eatingTimes()->attach($eatingTimes->pluck('id')->toArray());
-
-            // Attach exercise times
-            $schedule->exerciseTimes()->attach($exerciseTimes->pluck('id')->toArray());
-
-            // Attach relaxing times
-            $schedule->relaxationTimes()->attach($relaxingTimes->pluck('id')->toArray());
-
         }
     }
 }

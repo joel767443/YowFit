@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,5 +37,14 @@ class WeightTracking extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getCreatedAtAttribute($value): mixed
+    {
+        return Carbon::parse($value)->format('Y-m-d');
     }
 }

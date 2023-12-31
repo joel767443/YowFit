@@ -6,7 +6,12 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h5>Weight Log</h5></div>
+                    <div class="card-header float-start">
+                        <h5 class="float-start">Weight Log</h5>
+                        <span class="float-end">
+                            <a href="{{ route('weight-log.index') }}" class="btn btn-sm btn-success">Log</a>
+                        </span>
+                    </div>
 
                         <canvas id="weightChart" width="400" height="150"></canvas>
 
@@ -15,7 +20,7 @@
                             var weightData = @json($weightData);
 
                             var labels = weightData.map(function (data) {
-                                return data.recorded_at;
+                                return data.created_at;
                             });
 
                             var weights = weightData.map(function (data) {

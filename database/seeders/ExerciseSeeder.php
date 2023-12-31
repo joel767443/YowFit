@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Exercise;
 use App\Models\ExerciseType;
+use App\Models\Schedule;
 use Illuminate\Database\Seeder;
 
 /**

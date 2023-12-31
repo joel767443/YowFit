@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise_times', function (Blueprint $table) {
+        Schema::create('work_times', function (Blueprint $table) {
             $table->id();
             $table->time('time');
+            $table->enum('type', ['Job', 'Personal', 'Freelance']);
             $table->foreignId('schedule_id')->constrained();
-            $table->foreignId('exercise_id')->constrained();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise_times');
+        Schema::dropIfExists('work_times');
     }
 };

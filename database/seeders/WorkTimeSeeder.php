@@ -2,16 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Meal;
 use App\Models\Schedule;
 use Carbon\Carbon;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Class EatingTimeSeeder
- */
-class EatingTimeSeeder extends Seeder
+class WorkTimeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,19 +16,24 @@ class EatingTimeSeeder extends Seeder
     public function run(): void
     {
         $mondayToFridaySchedule = Schedule::all();
-        $eatingTimes = [
-            Carbon::createFromTime(7),
-            Carbon::createFromTime(13),
-            Carbon::createFromTime(19),
+        $workTimes = [
+            Carbon::createFromTime(12, 00),
+            Carbon::createFromTime(13, 00),
+            Carbon::createFromTime(17, 00),
         ];
 
-        foreach ($eatingTimes as $eatingTime) {
+        $workTypes = [
+            'Job',
+            'Personal',
+            'Freelance',
+        ];
+
+        foreach ($workTimes as $workTime) {
             foreach ($mondayToFridaySchedule as $schedule) {
-                $meal = collect(Meal::pluck('id')->random())->random();
-                DB::table('eating_times')->insert([
-                    'time' => $eatingTime,
-                    'meal_id' => $meal,
+                DB::table('work_times')->insert([
+                    'time' => $workTime,
                     'schedule_id' => $schedule->id,
+                    'type' => collect($workTypes)->random(),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Exercise;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,7 @@ class ExerciseTimeSeeder extends Seeder
      */
     public function run(): void
     {
+        $mondayToFridaySchedule = Schedule::all();
         $exerciseTimes = [
             Carbon::createFromTime(6),
             Carbon::createFromTime(13, 30),
@@ -24,13 +26,16 @@ class ExerciseTimeSeeder extends Seeder
         ];
 
         foreach ($exerciseTimes as $exerciseTime) {
-            $exerciseId = collect(Exercise::pluck('id')->random())->random();
-            DB::table('exercise_times')->insert([
-                'time' => $exerciseTime,
-                'exercise_id' => $exerciseId,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            foreach ($mondayToFridaySchedule as $schedule) {
+                $exerciseId = collect(Exercise::pluck('id')->random())->random();
+                DB::table('exercise_times')->insert([
+                    'time' => $exerciseTime,
+                    'exercise_id' => $exerciseId,
+                    'schedule_id' => $schedule->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
     }
 }

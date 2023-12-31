@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,18 +17,22 @@ class RelaxationTimeSeeder extends Seeder
      */
     public function run(): void
     {
+        $mondayToFridaySchedule = Schedule::all();
         $eatingTimes = [
             Carbon::createFromTime(12, 00),
             Carbon::createFromTime(20, 00),
         ];
 
         foreach ($eatingTimes as $eatingTime) {
-            DB::table('relaxation_times')->insert([
-                'time' => $eatingTime,
-                'description' => 'watch TV',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            foreach ($mondayToFridaySchedule as $schedule) {
+                DB::table('relaxation_times')->insert([
+                    'time' => $eatingTime,
+                    'description' => 'watch TV',
+                    'schedule_id' => $schedule->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
     }
 }

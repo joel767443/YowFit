@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->decimal('weight');
-            $table->timestamp('recorded_at')->nullable();
+            $table->string('recorded_at')->nullable();
             $table->timestamps();
         });
     }

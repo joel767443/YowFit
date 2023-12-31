@@ -16,8 +16,14 @@ class WeightTrackingSeeder extends Seeder
      */
     public function run(): void
     {
+        $recordedAtPlaces = [
+            "home",
+            "gym",
+            "GF's house",
+            "Other",
+        ];
         $userId = 1;
-        $startDate = Carbon::now()->subMonths(4);
+
 
         for ($i = 0; $i < 16; $i++) {
             $weight = 116.0 - ($i * 1.9);
@@ -25,7 +31,7 @@ class WeightTrackingSeeder extends Seeder
             WeightTracking::create([
                 'user_id' => $userId,
                 'weight' => $weight,
-                'recorded_at' => $startDate->addWeek()->toDateTimeString(),
+                'recorded_at' => collect($recordedAtPlaces)->random()
             ]);
         }
     }

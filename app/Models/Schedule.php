@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+
 
 /**
  * Class Schedule
@@ -30,36 +31,45 @@ class Schedule extends Model
     /**
      * Get the user that owns the schedule.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     /**
      * Get the exercise times associated with the schedule.
-     * @return BelongsToMany
+     * @return hasMany
      */
-    public function exerciseTimes(): BelongsToMany
+    public function exerciseTimes(): hasMany
     {
-        return $this->belongsToMany(ExerciseTime::class, 'schedule_exercise_time');
+        return $this->hasMany(ExerciseTime::class);
     }
 
     /**
      * Get the eating times associated with the schedule.
-     * @return BelongsToMany
+     * @return hasMany
      */
-    public function eatingTimes(): BelongsToMany
+    public function eatingTimes(): hasMany
     {
-        return $this->belongsToMany(EatingTime::class, 'schedule_eating_time');
+        return $this->hasMany(EatingTime::class);
     }
 
     /**
      * Get the relaxation times associated with the schedule.
-     * @return BelongsToMany
+     * @return hasMany
      */
-    public function relaxationTimes(): BelongsToMany
+    public function relaxationTimes(): hasMany
     {
-        return $this->belongsToMany(RelaxationTime::class, 'schedule_relaxation_time');
+        return $this->hasMany(RelaxationTime::class);
+    }
+
+    /**
+     * Get the relaxation times associated with the schedule.
+     * @return hasMany
+     */
+    public function workTimes(): hasMany
+    {
+        return $this->hasMany(WorkTime::class);
     }
 
     /**
