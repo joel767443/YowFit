@@ -31,7 +31,7 @@ class WeightTrackingSeeder extends Seeder
             WeightTracking::create([
                 'user_id' => $userId,
                 'weight' => $weight,
-                'recorded_at' => collect($recordedAtPlaces)->random()
+                'recorded_at' => collect($recordedAtPlaces)->random(),
             ]);
         }
     }

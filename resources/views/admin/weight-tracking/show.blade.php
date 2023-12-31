@@ -27,6 +27,9 @@
                                 return data.weight;
                             });
 
+                            labels = labels.reverse();
+                            weights = weights.reverse();
+
                             var chart = new Chart(ctx, {
                                 type: 'line',
                                 data: {

@@ -20,7 +20,11 @@ class WeightTrackingController extends Controller
      */
     public function show(): View
     {
-        $weightData = WeightTracking::where('user_id', auth()->id())->orderBy('created_at')->take(8)->get();
+        $weightData = WeightTracking::where('user_id', auth()->id())
+            ->latest('id')
+            ->take(8)
+            ->get();
+
         return view('admin.weight-tracking.show', compact('weightData'));
     }
 
