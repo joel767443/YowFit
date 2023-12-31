@@ -20,8 +20,24 @@ class MealTypeSeeder extends Seeder
         $mealTypes = [
             "Breakfast",
             "Lunch",
-            "Super",
-            "Snack"
+            "Dinner",
+            "Snack",
+            "Brunch",
+            "Dessert",
+            "Appetizer",
+            "Beverage",
+            "Pre-Workout",
+            "Post-Workout",
+            "Main Course",
+            "Side Dish",
+            "Salad",
+            "Soup",
+            "Smoothie",
+            "Grill",
+            "Vegetarian",
+            "Vegan",
+            "Gluten-Free",
+            "Low-Carb",
         ];
 
         foreach ($mealTypes as $type) {

@@ -17,9 +17,25 @@ class ExerciseTypeSeeder extends Seeder
     {
         $exerciseTypes = [
             "Aerobics",
-            "Power lifting",
-            "Intense training",
-            "Casual"
+            "Powerlifting",
+            "High-Intensity Interval Training (HIIT)",
+            "Yoga",
+            "CrossFit",
+            "Bodyweight Training",
+            "Running",
+            "Swimming",
+            "Cycling",
+            "Pilates",
+            "Martial Arts",
+            "Strength Training",
+            "Flexibility and Stretching",
+            "Functional Training",
+            "Cardiovascular Exercise",
+            "Dance Fitness",
+            "Endurance Training",
+            "Outdoor Activities",
+            "Group Fitness Classes",
+            "Calisthenics",
         ];
 
         foreach ($exerciseTypes as $type) {
