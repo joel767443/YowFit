@@ -34,6 +34,14 @@
                                 <input type="text" class="form-control" id="name" name="name" value="{{ $meal->name }}">
                             </div>
                             <div class="form-group mb-2">
+                                <label for="meal_type">Meal Type:</label>
+                                <select class="form-control" id="meal_type_id" name="meal_type_id">
+                                    @foreach($mealTypes as $type)
+                                        <option value="{{ $type->id }}" {{ $type->id == $meal->mealType->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
                                 <label for="description">Description:</label>
                                 <textarea class="form-control" id="description" name="description">{{ $meal->description }}</textarea>
                             </div>
@@ -45,7 +53,7 @@
                                 <label for="instructions">Instructions:</label>
                                 <textarea class="form-control" id="instructions" name="instructions">{{ $meal->instructions }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary">Update meal</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

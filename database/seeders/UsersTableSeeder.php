@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'user_type_id' => 1,
         ]);
 
-        foreach (range(1, 5) as $ignored) {
+        foreach (range(1, 20) as $ignored) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,

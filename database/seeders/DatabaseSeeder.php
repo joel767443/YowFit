@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-            UserStatusSeeder::class,
+            MealTypeSeeder::class,
             MealSeeder::class,
             ExerciseSeeder::class,
             EatingTimeSeeder::class,

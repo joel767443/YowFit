@@ -14,7 +14,7 @@ class UserService
      * @param User $instance
      * @return void
      */
-    public static function deleteUser(User $instance): void
+    public static function delete(User $instance): void
     {
         $instance->delete();
     }
@@ -25,6 +25,24 @@ class UserService
      */
     public static function getPaginatedUsers(Request $request): mixed
     {
+        return self::queryUsers($request)->paginate(env('PER_PAGE'));
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public static function getUsers(Request $request): mixed
+    {
+        return self::queryUsers($request)->get();
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    private static function queryUsers(Request $request): mixed
+    {
         return User::when($request->input('search'), function ($query, $search) {
             return $query->where(function ($query) use ($search) {
                 $query->where('users.email', 'like', '%' . $search . '%')
@@ -34,6 +52,6 @@ class UserService
             })->orWhereHas('userStatus', function ($subQuery) use ($search) {
                 $subQuery->where('name', 'like', '%' . $search . '%');
             });
-        })->paginate(env('PER_PAGE'));
+        });
     }
 }

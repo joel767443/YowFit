@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Web\ExerciseController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MealController;
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::any('/',[SiteController::class, 'index']);
 
 Auth::routes();
 

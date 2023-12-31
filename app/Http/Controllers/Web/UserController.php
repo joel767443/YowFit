@@ -70,7 +70,7 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        UserService::deleteUser($user);
+        UserService::delete($user);
         return redirect('users');
     }
 

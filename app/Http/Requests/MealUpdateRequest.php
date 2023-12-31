@@ -26,10 +26,11 @@ class MealUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => '',
-            'description' => '',
-            'ingredients' => '',
-            'instructions' => '',
+            'name' => 'string',
+            'description' => 'string',
+            'ingredients' => 'string',
+            'instructions' => 'string',
+            'meal_type_id' => 'integer'
         ];
     }
 }

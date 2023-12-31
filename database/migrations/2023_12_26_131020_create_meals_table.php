@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->text('ingredients');
-            $table->text('instructions');
+            $table->text('ingredients')->nullable();
+            $table->text('instructions')->nullable();
+            $table->foreignId('meal_type_id')->constrained();
             $table->timestamps();
         });
     }

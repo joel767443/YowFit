@@ -34,6 +34,9 @@
                             <dt class="col-sm-3">Instructions:</dt>
                             <dd class="col-sm-9">{{ $meal->instructions }}</dd>
 
+                            <dt class="col-sm-3">Meal type:</dt>
+                            <dd class="col-sm-9">{{ $meal->mealType->name }}</dd>
+
                         </dl>
                     </div>
 

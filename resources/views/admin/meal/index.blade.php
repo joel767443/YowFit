@@ -8,10 +8,11 @@
                     <div class="card-header">
                         <h5 class="float-start">Meals</h5>
                         <span class="float-end">
-                            <form action="{{ route('meals.index') }}" method="GET" class="form-inline">
+                            <form action="{{ route('meals.index') }}" method="GET" class="float-end form-inline">
                                 <input autocomplete="off" class="form-control form-control-sm" type="text" name="search" value="{{ old('search') }}"
                                        style="display: inline-block !important;width: auto !important;">
                                 <button class="btn btn-sm btn-success">Go</button>
+                                <a href="{{ route('meals.create') }}" class="btn btn-sm btn-success">Add</a>
                             </form>
                         </span>
                     </div>

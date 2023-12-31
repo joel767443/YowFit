@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Meal;
+use App\Models\MealType;
 use Illuminate\Database\Seeder;
 
 /**
@@ -15,6 +16,8 @@ class MealSeeder extends Seeder
      */
     public function run(): void
     {
+        $mealTypes = MealType::pluck('id');
+
         $meals = [
             [
                 'name' => 'Veggies and boiled eggs',
@@ -42,6 +45,7 @@ class MealSeeder extends Seeder
                 'description' => $meal['description'],
                 'ingredients' => $meal['ingredients'],
                 'instructions' => $meal['instructions'],
+                'meal_type_id' => collect($mealTypes)->random()
             ]);
         }
     }

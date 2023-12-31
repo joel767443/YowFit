@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -26,6 +27,7 @@ class Meal extends Model
         'description',
         'ingredients',
         'instructions',
+        'meal_type_id',
     ];
 
     /**
@@ -45,5 +47,13 @@ class Meal extends Model
     public function scopeSearch($query, $keyword): mixed
     {
         return $query->where('name', 'like', '%' . $keyword . '%');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function mealType(): BelongsTo
+    {
+        return $this->belongsTo(MealType::class);
     }
 }
