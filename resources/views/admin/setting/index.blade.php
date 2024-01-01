@@ -26,45 +26,13 @@
                             </div>
                         @endif
 
-                            <form id="wizardForm" action="" method="post">
-                                @csrf
-
-                                <div class="tab" id="resting">
-                                    <h5>Resting</h5>
-                                    <p>How many hours do you want to sleep</p>
-                                    <input type="text" name="sleep-hours" class="form-control">
-                                    <p>What time do you want to sleep</p>
-                                    <input type="text" name="sleep-hours" class="form-control">
-                                    <button type="button" class="btn btn-primary mt-3" onclick="nextStep('resting', 'exercise')">Next</button>
-                                </div>
-
-                                <div class="tab" id="exercise">
-                                    <h5>Exercises</h5>
-                                    <p>How many times can you exercise a day</p>
-                                    <input type="text" name="exercise_input" class="form-control">
-                                    <p>When can you exercise</p>
-                                    <input type="text" name="exercise_input" class="form-control">
-                                    <button type="button" class="btn btn-secondary mr-2 mt-3" onclick="prevStep('exercise', 'resting')">Previous</button>
-                                    <button type="button" class="btn btn-primary mt-3" onclick="nextStep('exercise', 'meals')">Next</button>
-                                </div>
-
-                                <div class="tab" id="meals">
-                                    <h5>Meals</h5>
-                                    <p>What times are you going to eat</p>
-                                    <input type="text" name="meals_input" class="form-control">
-                                    <button type="button" class="btn btn-secondary mr-2 mt-3" onclick="prevStep('meals', 'exercise')">Previous</button>
-                                    <button type="button" class="btn btn-primary mt-3" onclick="nextStep('meals', 'work')">Next</button>
-                                </div>
-
-                                <div class="tab" id="work">
-                                    <h5>Work</h5>
-                                    <p>What times are you going to eat</p>
-                                    <input type="text" name="meals_input" class="form-control">
-                                    <button type="button" class="btn btn-secondary mr-2 mt-3" onclick="prevStep('work', 'meals')">Previous</button>
-                                    <button type="submit" class="btn btn-success mt-3">Submit</button>
-                                </div>
-
-                            </form>
+                        <form id="wizardForm" action="" method="post">
+                            @csrf
+                            @include('admin.setting.partials.resting-form')
+                            @include('admin.setting.partials.exercise-form')
+                            @include('admin.setting.partials.meals-form')
+                            @include('admin.setting.partials.work-form')
+                        </form>
 
                     </div>
                 </div>
@@ -74,14 +42,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        let setting_id = 1
         function showTab(tabId) {
             $('.tab').hide();
             $('#' + tabId).show();
         }
 
         function nextStep(currentTab, nextTab) {
-            // Add validation logic if needed before proceeding to the next step
-
+            if (typeof window[currentTab] === 'function') {
+                window[currentTab]();
+            }
             showTab(nextTab);
         }
 
@@ -92,5 +62,59 @@
         $(document).ready(function () {
             showTab('resting');
         });
+
+        function post(formData) {
+
+            $.ajax({
+                url: '/settings/' + setting_id,
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    console.log(response);
+                    // Handle success response
+                },
+                error: function (error) {
+                    console.error(error);
+                    // Handle error response
+                }
+            });
+        }
+
+        function resting() {
+            let hours_sleep = parseInt($("#hours_sleep").val(), 10);
+            let sleeping_time = $("#sleeping_time").val();
+
+            // Parse sleeping_time as a time
+            let sleepTime = new Date('1970-01-01T' + sleeping_time + 'Z');
+
+            // Add hours_sleep to the hours part
+            sleepTime.setHours(sleepTime.getHours() + hours_sleep);
+
+            // Format the result as HH:mm
+            let wakeup_time = sleepTime.toISOString().substr(11, 5);
+
+            let data = {
+                'hours_sleep': hours_sleep,
+                'sleeping_time': sleeping_time,
+                'wakeup_time': wakeup_time,
+                'weighing_frequency': $("#weighing_frequency").val(),
+            };
+            post(data)
+        }
+
+         function exercise() {
+            alert('exercise')
+         }
+
+        function meals() {
+            alert('meals')
+        }
+        function work() {
+            alert('work')
+        }
     </script>
 @endsection
