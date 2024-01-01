@@ -75,4 +75,4 @@ jobs:
             git pull origin main
             composer install --no-dev --optimize-autoloader
             npm install --production
-            php artisan migrate --force
+            php artisan migrate

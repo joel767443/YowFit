@@ -1,6 +1,6 @@
 <div class="tab" id="exercise">
     <h5>Exercises</h5>
-   
+
     <p>When can you exercise</p>
     <label>From</label>
     <label>
