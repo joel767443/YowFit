@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('eating_times', function (Blueprint $table) {
             $table->id();
-            $table->time('time');
+            $table->time('eating_time_from');
+            $table->time('eating_time_to');
             $table->foreignId('meal_id')->constrained();
             $table->foreignId('schedule_id')->constrained();
             $table->timestamps();

@@ -29,9 +29,9 @@
                         <form id="wizardForm" action="" method="post">
                             @csrf
                             @include('admin.setting.partials.resting-form')
-                            @include('admin.setting.partials.exercise-form')
-                            @include('admin.setting.partials.meals-form')
-                            @include('admin.setting.partials.work-form')
+                            @include('admin.setting.partials.exercise-form-index')
+                            @include('admin.setting.partials.meals-form-index')
+                            @include('admin.setting.partials.work-form-index')
                         </form>
 
                     </div>
@@ -43,6 +43,7 @@
 
     <script>
         let setting_id = 1
+
         function showTab(tabId) {
             $('.tab').hide();
             $('#' + tabId).show();
@@ -60,7 +61,8 @@
         }
 
         $(document).ready(function () {
-            showTab('resting');
+            showTab('meals');
+            // showTab('resting');
         });
 
         function post(formData) {
@@ -78,7 +80,7 @@
                     // Handle success response
                 },
                 error: function (error) {
-                    console.error(error);
+                    // console.log(error);
                     // Handle error response
                 }
             });
@@ -106,13 +108,57 @@
             post(data)
         }
 
-         function exercise() {
-            alert('exercise')
-         }
+        function exercise() {
+
+            let exerciseTimes = [];
+
+            ['one', 'two', 'three'].forEach(function (index) {
+                let fromValue = $("#exercise_time_from_" + index).val();
+                let toValue = $("#exercise_time_to_" + index).val();
+                let exerciseIdValue = $("#exercise_id_" + index).val();
+
+                // Create an object for each index and push it to the array
+                exerciseTimes.push({
+                    'exercise_time_from': fromValue,
+                    'exercise_time_to': toValue,
+                    'exercise_id': exerciseIdValue,
+                    'schedule_id': 1,  // Adjust this as needed
+                });
+            });
+
+            let data = {
+                'exercises_per_day': $('#exercises_per_day').val(),
+                'exercise_times': JSON.stringify(exerciseTimes),
+            }
+
+            post(data)
+        }
 
         function meals() {
-            alert('meals')
+            let mealTimes = [];
+
+            ['one', 'two', 'three'].forEach(function (index) {
+                let fromValue = $("#meal_time_from_" + index).val();
+                let toValue = $("#meal_time_to_" + index).val();
+                let mealIdValue = $("#meal_id_" + index).val();
+
+                // Create an object for each index and push it to the array
+                mealTimes.push({
+                    'meal_time_from': fromValue,
+                    'meal_time_to': toValue,
+                    'meal_id': mealIdValue,
+                    'schedule_id': 1,  // Adjust this as needed
+                });
+            });
+
+            let data = {
+                'meals_per_day': $('#meals_per_day').val(),
+                'eating_times': JSON.stringify(mealTimes),
+            }
+
+            post(data)
         }
+
         function work() {
             alert('work')
         }

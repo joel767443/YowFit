@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('exercise_times', function (Blueprint $table) {
             $table->id();
-            $table->time('time');
+            $table->time('from');
+            $table->time('to');
             $table->foreignId('schedule_id')->constrained();
             $table->foreignId('exercise_id')->constrained();
             $table->timestamps();

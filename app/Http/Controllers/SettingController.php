@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SettingRequest;
+use App\Models\Exercise;
+use App\Models\Meal;
 use App\Models\Setting;
+use App\Models\WorkTime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +22,11 @@ class SettingController extends Controller
      */
     public function index(): view
     {
-        return view('admin.setting.index', ['settings' => Setting::where('user_id', Auth::user()->id)->first()]);
+        $settings = Setting::where('user_id', Auth::user()->id)->first();
+        $exercises = Exercise::all();
+        $meals = Meal::all();
+        $workTypes = WorkTime::$workTypes;
+        return view('admin.setting.index', compact('settings', 'exercises', 'meals', 'workTypes'));
     }
 
     /**
@@ -29,6 +36,10 @@ class SettingController extends Controller
      */
     #[NoReturn] public function update(SettingRequest $request, Setting $setting): void
     {
+//        dd($request->validated());
         $setting->update($request->validated());
     }
 }
+
+
+//"exercise_times" => "[{"schedule_id":1},{"schedule_id":1},{"schedule_id":1}]"

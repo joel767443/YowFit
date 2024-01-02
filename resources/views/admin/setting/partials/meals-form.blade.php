@@ -1,22 +1,27 @@
-<div class="tab" id="meals">
-    <h5>Meals</h5>
-    <p>How many times do you want to eat</p>
-    <label>
-        <select class="form-control" name="meals_per_day">
-            <option selected>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-    </label>
-    <p>Choose meals</p>
-    <input type="text" name="meals_input" class="form-control">
-    <button type="button" class="btn btn-secondary mr-2 mt-3"
-            onclick="prevStep('meals', 'exercise')">Previous
-    </button>
-    <button type="button" class="btn btn-primary mt-3" onclick="nextStep('meals', 'work')">
-        Next
-    </button>
-</div>
+<label>From</label>
+<label>
+    <select class="form-control" name="meal_time_from[{{ $index }}]" id="meal_time_from_{{ $index }}">
+        <option value="6:00" {{ $settings->to == '6:00' ? 'selected' : '' }}>6:00</option>
+        <option value="8:00" {{ $settings->to == '8:00' ? 'selected' : '' }}>8:00</option>
+        <option value="12:00" {{ $settings->to == '12:00' ? 'selected' : '' }}>12:00</option>
+    </select>
+</label>
+<label>To</label>
+<label>
+    <select class="form-control" name="meal_time_to[{{ $index }}]" id="meal_time_to_{{ $index }}">
+        <option value="9:00" {{ $settings->to == '9:00' ? 'selected' : '' }}>9:00</option>
+        <option value="10:00" {{ $settings->to == '10:00' ? 'selected' : '' }}>10:00</option>
+        <option value="13:00" {{ $settings->to == '13:00' ? 'selected' : '' }}>13:00</option>
+    </select>
+</label>
+<br/>
+<label>Meal</label>
+<label>
+    <select class="form-control" name="meal_id[{{ $index }}]" id="meal_id_{{ $index }}">
+        @foreach($meals as $meal)
+            <option value="{{ $meal->id }}"> {{ $meal->name }}</option>
+        @endforeach
+    </select>
+</label>
+
+<br/>
