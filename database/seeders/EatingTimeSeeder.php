@@ -29,7 +29,8 @@ class EatingTimeSeeder extends Seeder
             foreach ($mondayToFridaySchedule as $schedule) {
                 $meal = collect(Meal::pluck('id')->random())->random();
                 DB::table('eating_times')->insert([
-                    'time' => $eatingTime,
+                    'eating_time_from' => $eatingTime,
+                    'eating_time_to' => date('H:i:s', strtotime($eatingTime . ' + 30 minutes')),
                     'meal_id' => $meal,
                     'schedule_id' => $schedule->id,
                     'created_at' => now(),

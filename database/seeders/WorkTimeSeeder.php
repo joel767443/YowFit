@@ -31,7 +31,8 @@ class WorkTimeSeeder extends Seeder
         foreach ($workTimes as $workTime) {
             foreach ($mondayToFridaySchedule as $schedule) {
                 DB::table('work_times')->insert([
-                    'time' => $workTime,
+                    'work_time_from' => $workTime,
+                    'work_time_to' => date('H:i:s', strtotime($workTime . ' + 2 hours')),
                     'schedule_id' => $schedule->id,
                     'type' => collect($workTypes)->random(),
                     'created_at' => now(),

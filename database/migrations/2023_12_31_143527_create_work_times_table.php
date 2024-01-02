@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('work_times', function (Blueprint $table) {
             $table->id();
-            $table->time('work_start_time');
-            $table->time('work_end_time');
+            $table->time('work_time_from');
+            $table->time('work_time_to');
             $table->enum('type', ['Job', 'Personal', 'Freelance']);
             $table->foreignId('schedule_id')->constrained();
             $table->timestamps();

@@ -29,7 +29,8 @@ class ExerciseTimeSeeder extends Seeder
             foreach ($mondayToFridaySchedule as $schedule) {
                 $exerciseId = collect(Exercise::pluck('id')->random())->random();
                 DB::table('exercise_times')->insert([
-                    'time' => $exerciseTime,
+                    'exercise_time_from' => $exerciseTime,
+                    'exercise_time_to' => date('H:i:s', strtotime($exerciseTime . ' + 30 minutes')),
                     'exercise_id' => $exerciseId,
                     'schedule_id' => $schedule->id,
                     'created_at' => now(),
