@@ -18,32 +18,4 @@ class UserRepository extends BaseRepository
     {
         $this->model = $user;
     }
-
-    /**
-     * @param string|null $search
-     * @param int $paginateBy
-     * @return LengthAwarePaginator
-     */
-    public function getUserList(?string $search, int $paginateBy = 10): LengthAwarePaginator
-    {
-        $query = $this->model->newQuery();
-
-        if ($search) {
-            $this->buildSearchConditions($query, $search);
-        }
-
-        return $query->paginate($paginateBy);
-    }
-
-    /**
-     * @param $query
-     * @param $search
-     * @return void
-     */
-    private function buildSearchConditions($query, $search): void
-    {
-        $query->where(function (Builder $query) use ($search) {
-            $query->where('name', 'like', "%$search%");
-        });
-    }
 }
