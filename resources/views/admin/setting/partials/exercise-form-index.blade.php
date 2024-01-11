@@ -1,14 +1,22 @@
 <div class="tab" id="exercise">
-    <h5>Exercises</h5>
+    <h5>
+        Exercises
+        <span id="showForm" class="float-end">jh</span>
+    </h5>
 
-    <p>Exercises per day</p>
-    <input type="text" class="form-control" name="exercises_per_day" id="exercises_per_day">
-    @include('admin.setting.partials.exercise-form', ['index' => 'one'])
-    @include('admin.setting.partials.exercise-form', ['index' => 'two'])
-    @include('admin.setting.partials.exercise-form', ['index' => 'three'])
+    <div style="margin-top: 8px; display: none" id="formDiv">
+        <br/>
+        @include('admin.setting.partials.exercise-form')
+        <hr/>
+    </div>
 
-    <br/>
-    <button type="button" class="btn btn-secondary mr-2 mt-3"
+    @foreach($exerciseTimes as $time)
+        <div> <b>From :</b> {{ $time->exercise_time_from }}  <b>To :</b> {{ $time->exercise_time_to }} <b>Type : </b>{{ $time->exercise->name }}</div>
+    @endforeach
+
+    <div id="exerciseTime"></div>
+
+    <button type="button" class="btn btn-secondary mr-2 mt-2"
             onclick="prevStep('exercise', 'resting')">Previous
     </button>
     <button type="button" class="btn btn-primary mt-3"

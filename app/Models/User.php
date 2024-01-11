@@ -6,6 +6,7 @@ namespace App\Models;
 use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -79,6 +80,14 @@ class User extends Authenticatable
     public function userStatus(): BelongsTo
     {
         return $this->belongsTo(UserStatus::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
     }
 
 }

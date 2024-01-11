@@ -108,3 +108,15 @@ Users enjoy the flexibility of including multiple instances of exercise, meals, 
 - **Features:** Implementation of robust data privacy and security measures.
 
 In conclusion, the **Yo Health** app seamlessly integrates scheduling, exercise tracking, recipe management, weight monitoring, and work schedule integration to provide users with a holistic and dynamic approach to health and well-being. The addition of dynamic features ensures flexibility and personalization, catering to a diverse range of user needs.
+
+## Technical
+## Redis caching
+## rabbitMQ for live notifications
+## code formatting and setup
+## CI/CD
+## Unit testing and code coverage
+## MySQL changes advanced configurations
+### Database structure
+## Microservices
+## Cloud hosting services
+## Tech stack

@@ -1,4 +1,4 @@
-<label>From</label>
+    <label>From</label>
 <label>
     <select class="form-control" name="meal_time_from[{{ $index }}]" id="meal_time_from_{{ $index }}">
         <option value="6:00" {{ $settings->to == '6:00' ? 'selected' : '' }}>6:00</option>

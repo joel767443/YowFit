@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\WeightTracking;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -22,8 +23,8 @@ class WeightTrackingSeeder extends Seeder
             "GF's house",
             "Other",
         ];
-        $userId = 1;
 
+        $userId = User::where('email', 'admin@example.com')->first()?->id;
 
         for ($i = 0; $i < 16; $i++) {
             $weight = 116.0 - ($i * 1.9);

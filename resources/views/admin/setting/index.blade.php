@@ -61,29 +61,35 @@
         }
 
         $(document).ready(function () {
-            showTab('meals');
+            showTab('exercise');
             // showTab('resting');
         });
 
-        function post(formData) {
+        /**
+         *
+         * @param formData
+         * @param url
+         */
+        function post(formData, url = 'settings') {
 
-            $.ajax({
-                url: '/settings/' + setting_id,
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    console.log(response);
-                    // Handle success response
-                },
-                error: function (error) {
-                    // console.log(error);
-                    // Handle error response
-                }
-            });
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: '/' + url + '/',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        resolve(response);
+                    },
+                    error: function (error) {
+                        // console.log(error);
+                        // Handle error response
+                    }
+                });
+            })
         }
 
         function resting() {
@@ -108,59 +114,25 @@
             post(data)
         }
 
-        function exercise() {
+        $('#saveExercise').click(function () {
 
-            let exerciseTimes = [];
-
-            ['one', 'two', 'three'].forEach(function (index) {
-                let fromValue = $("#exercise_time_from_" + index).val();
-                let toValue = $("#exercise_time_to_" + index).val();
-                let exerciseIdValue = $("#exercise_id_" + index).val();
-
-                // Create an object for each index and push it to the array
-                exerciseTimes.push({
-                    'exercise_time_from': fromValue,
-                    'exercise_time_to': toValue,
-                    'exercise_id': exerciseIdValue,
-                    'schedule_id': 1,  // Adjust this as needed
-                });
-            });
-
+            let timeFrom = $("#exercise_time_from").val()
+            let timeTo = $("#exercise_time_to").val()
             let data = {
-                'exercises_per_day': $('#exercises_per_day').val(),
-                'exercise_times': JSON.stringify(exerciseTimes),
+                'exercise_time_from': timeFrom,
+                'exercise_time_to': timeTo,
+                'exercise_id': $("#exercise_id").val(),
+                'schedule_id': 1,  // Adjust this as needed
             }
 
-            post(data)
-        }
+            post(data, 'exerciseTimes').then(function (response) {
+                console.log(response.exerciseTime.exercise_time_from)
+                $('#exerciseTime').append("<div><b>From :</b> "+timeFrom+" <b>To :</b> "+timeTo+" <b>Type : "+response.exerciseTime.exercise+"</div>")
+            })
+        })
 
-        function meals() {
-            let mealTimes = [];
-
-            ['one', 'two', 'three'].forEach(function (index) {
-                let fromValue = $("#meal_time_from_" + index).val();
-                let toValue = $("#meal_time_to_" + index).val();
-                let mealIdValue = $("#meal_id_" + index).val();
-
-                // Create an object for each index and push it to the array
-                mealTimes.push({
-                    'meal_time_from': fromValue,
-                    'meal_time_to': toValue,
-                    'meal_id': mealIdValue,
-                    'schedule_id': 1,  // Adjust this as needed
-                });
-            });
-
-            let data = {
-                'meals_per_day': $('#meals_per_day').val(),
-                'eating_times': JSON.stringify(mealTimes),
-            }
-
-            post(data)
-        }
-
-        function work() {
-            alert('work')
-        }
+        $('#showForm').click(function (){
+            $('#formDiv').show()
+        })
     </script>
 @endsection

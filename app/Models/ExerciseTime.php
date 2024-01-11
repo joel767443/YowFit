@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ExerciseTime
+ * @method static create(array $array)
+ * @method static where(string $string)
+ * @method static whereIn(string $string, int $int)
  */
 class ExerciseTime extends Model
 {
@@ -17,7 +20,9 @@ class ExerciseTime extends Model
      * @var string[]
      */
     protected $fillable = [
-        'time',
+        'exercise_time_from',
+        'exercise_time_to',
+        'schedule_id',
         'exercise_id',
     ];
 
