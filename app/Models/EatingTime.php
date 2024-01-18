@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class EatingTime
+ * @method static create(array $eatingTimeData)
  */
 class EatingTime extends Model
 {
@@ -17,7 +18,9 @@ class EatingTime extends Model
      * @var string[]
      */
     protected $fillable = [
-        'time',
+        'eating_time_from',
+        'eating_time_to',
+        'schedule_id',
         'meal_id',
     ];
 

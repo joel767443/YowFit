@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 
 /**
  * Class Schedule
+ * @method static create(string[] $array)
  */
 class Schedule extends Model
 {
