@@ -11,17 +11,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -51,7 +40,7 @@ jobs:
 
       - name: Run Test Suite
         id: test
-        run: ./vendor/bin/sail artisan test
+        run: php artisan test
 
       - name: Install NPM Dependencies and Compile Assets
         run: |
@@ -77,4 +66,3 @@ jobs:
             npm install --production
             npm run build
             php artisan migrate
-
