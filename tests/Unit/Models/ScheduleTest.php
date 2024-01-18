@@ -11,6 +11,9 @@ use App\Models\WorkTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class ScheduleTest
+ */
 class ScheduleTest extends TestCase
 {
     use RefreshDatabase;
