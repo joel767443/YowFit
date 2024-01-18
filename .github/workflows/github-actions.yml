@@ -51,7 +51,7 @@ jobs:
 
       - name: Run Test Suite
         id: test
-        run: php artisan test
+        run: ./vendor/bin/sail artisan test
 
       - name: Install NPM Dependencies and Compile Assets
         run: |
