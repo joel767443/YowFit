@@ -38,13 +38,4 @@ class WeightTracking extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * @param $value
-     * @return mixed
-     */
-    public function getCreatedAtAttribute($value): mixed
-    {
-        return Carbon::parse($value)->format('Y-m-d');
-    }
 }
