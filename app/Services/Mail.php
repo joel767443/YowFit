@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -15,15 +14,15 @@ class Mail extends \Illuminate\Support\Facades\Mail
     /**
      * @var string
      */
-    private $subject;
+    private string $subject;
     /**
      * @var string
      */
-    private $from;
+    private string $from;
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @param $request

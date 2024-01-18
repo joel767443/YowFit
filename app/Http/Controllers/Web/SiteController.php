@@ -14,7 +14,7 @@ class SiteController extends Controller
      * @param Request $request
      * @return Factory|View
      */
-    public function index(Request $request)
+    public function index(Request $request): Factory|View
     {
         $mail = new Mail();
         if ($request->isMethod('post')) {

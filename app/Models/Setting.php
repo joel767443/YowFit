@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static create(array $array)
  * @method static where()
+ * @method static find($id)
  */
 class Setting extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'hours_sleep',
         'sleeping_time',
         'wakeup_time',
@@ -42,4 +44,27 @@ class Setting extends Model
     {
         return Carbon::parse($value)->format('H:i');
     }
+
+    /**
+     * Mutator for exercise_times attribute.
+     *
+     * @param  mixed  $value
+     * @return void
+     */
+    public function setExerciseTimesAttribute(mixed $value): void
+    {
+        $this->attributes['exercise_times'] = json_encode($value);
+    }
+
+    /**
+     * Accessor for exercise_times attribute.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    public function getExerciseTimesAttribute(mixed $value): mixed
+    {
+        return json_decode($value, true);
+    }
+
 }
