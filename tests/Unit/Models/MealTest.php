@@ -90,6 +90,6 @@ class MealTest extends TestCase
         $meal = Meal::factory()->create();
         $meal->delete();
 
-        $this->assertDatabaseMissing('eating_times', ['id' => $meal->id]);
+        $this->assertDatabaseMissing('meals', ['id' => $meal->id]);
     }
 }
