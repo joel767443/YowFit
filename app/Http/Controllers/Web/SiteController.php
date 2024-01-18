@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Services\Mail;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\ExerciseTimeController;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Web\ExerciseController;
+use App\Http\Controllers\Web\ExerciseTimeController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MealController;
 use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SettingController;
+use App\Http\Controllers\Web\SiteController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\WeightTrackingController;
 use Illuminate\Support\Facades\Route;
