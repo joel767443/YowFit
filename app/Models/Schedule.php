@@ -85,10 +85,10 @@ class Schedule extends Model
             ->where('user_id', '=', $userId)
             ->where('day_of_week', '=', $dayOfWeek)
             ->with(['exerciseTimes' => function ($query) {
-                $query->orderBy('time');
+                $query->orderBy('exercise_time_from');
             }])
             ->with(['eatingTimes' => function ($query) {
-                $query->orderBy('time');
+                $query->orderBy('eating_time_from');
             }])
             ->with(['relaxationTimes' => function ($query) {
                 $query->orderBy('time');

@@ -1,7 +1,7 @@
 <div class="tab" id="exercise">
     <h5>
         Exercises
-        <span id="showForm" class="float-end">jh</span>
+        <span id="showForm" class="float-end">Add</span>
     </h5>
 
     <div style="margin-top: 8px; display: none" id="formDiv">
