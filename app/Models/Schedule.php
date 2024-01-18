@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 /**
  * Class Schedule
  * @method static create(string[] $array)
+ * @property mixed $id
  */
 class Schedule extends Model
 {

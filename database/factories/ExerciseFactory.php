@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Meal;
-use App\Models\MealType;
+use App\Models\Exercise;
+use App\Models\ExerciseType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Meal>
+ * @extends Factory<Exercise>
  */
-class MealFactory extends Factory
+class ExerciseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,14 +18,14 @@ class MealFactory extends Factory
      */
     public function definition(): array
     {
-        $mealType = MealType::factory()->create();
+        /** @var ExerciseType $exerciseType */
+        $exerciseType = ExerciseType::factory()->create();
 
         return [
             'name' =>  $this->faker->name,
             'description' =>  $this->faker->text,
-            'ingredients' =>  $this->faker->text,
-            'instructions' =>  $this->faker->text,
-            'meal_type_id' => $mealType->id,
+            'link' =>  $this->faker->text,
+            'exercise_type_id' => $exerciseType->id,
         ];
     }
 }
