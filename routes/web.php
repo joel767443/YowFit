@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\ExerciseController;
 use App\Http\Controllers\Web\ExerciseTimeController;
+use App\Http\Controllers\Web\ExerciseTypeController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MealController;
 use App\Http\Controllers\Web\ScheduleController;
@@ -31,6 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('users', UserController::class);
     Route::resource('exercises', ExerciseController::class);
     Route::resource('exerciseTimes', ExerciseTimeController::class);
+    Route::resource('exercise-types', ExerciseTypeController::class);
     Route::resource('meals', MealController::class);
 
     Route::get('weight-tracking', [WeightTrackingController::class, 'show']);

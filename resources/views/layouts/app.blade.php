@@ -73,6 +73,7 @@
                                     <a href="{{ url('my-schedule') }}" class="dropdown-item">My schedule</a>
                                     <a href="{{ url('weight-tracking') }}" class="dropdown-item">Weight log</a>
                                     <a href="{{ url('settings') }}" class="dropdown-item">My settings</a>
+                                    <a href="{{ url('exercise-types') }}" class="dropdown-item">Exercise Types</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

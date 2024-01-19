@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface ExerciseTypeRepositoryInterface
+interface ExerciseTypeRepositoryInterface extends BaseRepositoryInterface
 {
 
 }

@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateExerciseTypeRequest;
-use App\Http\Requests\ExerciseTypeUpdateRequest;
-use App\Models\ExerciseType;
 use App\Repositories\Contracts\ExerciseTypeRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ExerciseTypeController extends Controller
 {
@@ -30,27 +29,7 @@ class ExerciseTypeController extends Controller
     public function index(Request $request): View
     {
         $exerciseTypes = $this->exerciseTypeRepository->getAll($request);
-        return view('admin.exerciseType.index', compact('exerciseTypes'));
-    }
-
-    /**
-     * @param ExerciseType $exerciseType
-     * @return View
-     */
-    public function show(ExerciseType $exerciseType): View
-    {
-        return view('admin.exerciseType.show', compact('exerciseType'));
-    }
-
-    /**
-     * @param ExerciseType $exerciseType
-     * @return View
-     */
-    public function edit(ExerciseType $exerciseType): View
-    {
-        return view('admin.exerciseType.edit', [
-            'exerciseType' => $exerciseType,
-        ]);
+        return view('admin.exercise-type.index', compact('exerciseTypes'));
     }
 
     /**
@@ -58,7 +37,7 @@ class ExerciseTypeController extends Controller
      */
     public function create(): view
     {
-        return view('admin.exerciseType.create');
+        return view('admin.exercise-type.create');
     }
 
     /**
@@ -67,18 +46,9 @@ class ExerciseTypeController extends Controller
      */
     public function store(CreateExerciseTypeRequest $request): RedirectResponse
     {
-        $this->exerciseTypeRepository->create($request->validated());
-        return redirect('exerciseTypes')->with('success', 'ExerciseType created successfully.');
-    }
-
-    /**
-     * @param ExerciseTypeUpdateRequest $request
-     * @param ExerciseType $exerciseType
-     * @return RedirectResponse
-     */
-    public function update(ExerciseTypeUpdateRequest $request, ExerciseType $exerciseType): RedirectResponse
-    {
-        $this->exerciseTypeRepository->update($exerciseType, $request->validated());
-        return redirect("exerciseTypes/$exerciseType->id");
+        $validatedData = $request->validated();
+        $validatedData['slug'] = Str::slug($request->validated('name'));
+        $this->exerciseTypeRepository->create($validatedData);
+        return redirect('exercise-types')->with('success', 'ExerciseType created successfully.');
     }
 }
