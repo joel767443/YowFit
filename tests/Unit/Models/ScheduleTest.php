@@ -92,8 +92,8 @@ class ScheduleTest extends TestCase
     public function it_can_get_full_schedule_for_a_given_day()
     {
         $user = User::factory()->create();
-        $schedule = Schedule::factory()->create(['user_id' => $user->id, 'day_of_week' => 'Monday']);
 
+        $schedule = $user->schedules->where('day_of_week', '=', 'Monday')->first();
         // Create associated exercise, eating, and relaxation times
         ExerciseTime::factory()->create(['schedule_id' => $schedule->id]);
         EatingTime::factory()->create(['schedule_id' => $schedule->id]);

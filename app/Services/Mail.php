@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail as MailFacade;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 /**
  * Class Mail
  */
-class Mail extends \Illuminate\Support\Facades\Mail
+class Mail extends MailFacade
 {
     /**
      * @var string
@@ -37,12 +38,11 @@ class Mail extends \Illuminate\Support\Facades\Mail
 
         if ($request->input('contact')) {
             $content = "Contact from $request->email, Name : $request->name, Message : $request->message";
-            $this->processMail($content, $template);
         } else {
             $content = "Freebies request : $request->email";
-            $this->processMail($content, $template);
         }
 
+        $this->processMail($content, $template);
         Session::flash('message', "Message sent");
         return Redirect::to('/');
 
@@ -58,6 +58,7 @@ class Mail extends \Illuminate\Support\Facades\Mail
             'name' => $this->name,
             'content' => $content
         );
+
         Mail::send(['text' => $template], $data, function ($message) {
             $message->to('yowelikachala@gmail.com', $this->name)->subject
             ($this->subject);

@@ -7,6 +7,9 @@ use App\Http\Requests\ExerciseTimeCreateRequest;
 use App\Models\ExerciseTime;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Class ExerciseTimeController
+ */
 class ExerciseTimeController extends Controller
 {
     /**

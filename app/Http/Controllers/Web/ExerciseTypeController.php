@@ -10,10 +10,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+/**
+ * Class ExerciseTypeController
+ * @property ExerciseTypeRepositoryInterface $exerciseTypeRepository
+ */
 class ExerciseTypeController extends Controller
 {
-    private ExerciseTypeRepositoryInterface $exerciseTypeRepository;
-
     /**
      * @param ExerciseTypeRepositoryInterface $exerciseTypeRepository
      */

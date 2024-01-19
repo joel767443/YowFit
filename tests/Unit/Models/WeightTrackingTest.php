@@ -33,7 +33,6 @@ class WeightTrackingTest extends TestCase
         $weightTrackingData = [
             'user_id' => $user->id,
             'weight' => 70.5,
-            'recorded_at' => now(),
         ];
 
         WeightTracking::create($weightTrackingData);

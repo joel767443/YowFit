@@ -2,22 +2,21 @@
 
 namespace App\Observers;
 
-use App\Models\Schedule;
 use App\Models\User;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\ScheduleRepositoryInterface;
 
 /**
- * @property UserRepositoryInterface $userRepository
+ * @property ScheduleRepositoryInterface $scheduleRepository
  */
 class UserObserver
 {
 
     /**
-     * @param UserRepositoryInterface $userRepository
+     * @param ScheduleRepositoryInterface $scheduleRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository,)
+    public function __construct(ScheduleRepositoryInterface $scheduleRepository,)
     {
-        $this->userRepository = $userRepository;
+        $this->scheduleRepository = $scheduleRepository;
     }
 
     /**
@@ -36,7 +35,7 @@ class UserObserver
         ];
 
         foreach ($daysOfWeek as $dayName) {
-            $this->userRepository->create([
+            $this->scheduleRepository->create([
                 'user_id' => $user->id,
                 'day_of_week' => $dayName,
             ]);

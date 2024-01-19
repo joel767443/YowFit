@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class RelaxationTime
  * @property  string time
  * @property string description
+ * @property mixed $id
  */
 class RelaxationTime extends Model
 {

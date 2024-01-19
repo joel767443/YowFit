@@ -8,6 +8,9 @@ use App\Repositories\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class UserRepositoryTest
+ */
 class UserRepositoryTest extends TestCase
 {
 
@@ -16,6 +19,9 @@ class UserRepositoryTest extends TestCase
     /** @var UserRepository */
     private UserRepository $repository;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();

@@ -4,7 +4,6 @@ namespace Tests\Unit\Repositories;
 
 use App\Models\Meal;
 use App\Models\MealType;
-use App\Repositories\BaseRepository;
 use App\Repositories\MealRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

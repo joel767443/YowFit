@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('day_of_week');
-            $table->time('wakeup_time');
-            $table->time('sleeping_time');
+            $table->time('wakeup_time')->nullable();
+            $table->time('sleeping_time')->nullable();
             $table->timestamps();
         });
     }
