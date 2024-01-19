@@ -83,6 +83,16 @@ class User extends Authenticatable
     }
 
     /**
+     * @param $query
+     * @param $keyword
+     * @return mixed
+     */
+    public function scopeSearch($query, $keyword): mixed
+    {
+        return $query->where('name', 'like', '%' . $keyword . '%');
+    }
+
+    /**
      * @return HasMany
      */
     public function schedules(): HasMany

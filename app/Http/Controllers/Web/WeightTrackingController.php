@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
  */
 class WeightTrackingController extends Controller
 {
+    /**
+     * @var WeightTrackingRepositoryInterface
+     */
     private WeightTrackingRepositoryInterface $weightTrackingRepository;
 
     /**
