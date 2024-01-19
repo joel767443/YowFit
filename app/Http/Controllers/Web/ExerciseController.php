@@ -6,23 +6,39 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ExerciseCreateRequest;
 use App\Http\Requests\ExerciseUpdateRequest;
 use App\Models\Exercise;
-use App\Models\ExerciseType;
+use App\Repositories\Contracts\ExerciseRepositoryInterface;
+use App\Repositories\Contracts\ExerciseTypeRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
  * Class ExerciseController
+ * @property ExerciseRepositoryInterface $exerciseRepository
+ * @property ExerciseTypeRepositoryInterface $exerciseTypeRepository
  */
 class ExerciseController extends Controller
 {
+    /**
+     * @param ExerciseRepositoryInterface $exerciseRepository
+     * @param ExerciseTypeRepositoryInterface $exerciseTypeRepository
+     */
+    public function __construct(
+        ExerciseRepositoryInterface $exerciseRepository,
+        ExerciseTypeRepositoryInterface $exerciseTypeRepository
+    )
+    {
+        $this->exerciseRepository = $exerciseRepository;
+        $this->exerciseTypeRepository = $exerciseTypeRepository;
+    }
+
     /**
      * @param Request $request
      * @return View
      */
     public function index(Request $request): View
     {
-        $exercises = Exercise::search($request->input('search'))->paginate(env('PER_PAGE'));
+        $exercises = $this->exerciseRepository->getAll($request);
         return view('admin.exercise.index', compact('exercises'));
     }
 
@@ -45,7 +61,7 @@ class ExerciseController extends Controller
     {
         return view('admin.exercise.edit', [
             'exercise' => $exercise,
-            'exerciseTypes' => ExerciseType::all(),
+            'exerciseTypes' => $this->exerciseTypeRepository->getAll(),
         ]);
     }
 
@@ -54,7 +70,9 @@ class ExerciseController extends Controller
      */
     public function create(): view
     {
-        return view('admin.exercise.create', ['exerciseTypes' => ExerciseType::all()]);
+        return view('admin.exercise.create', [
+            'exerciseTypes' => $this->exerciseTypeRepository->getAll()
+        ]);
     }
 
     /**
@@ -63,7 +81,7 @@ class ExerciseController extends Controller
      */
     public function store(ExerciseCreateRequest $request): RedirectResponse
     {
-        Exercise::create($request->validated());
+        $this->exerciseRepository->create($request->validated());
         return redirect('exercises')->with('success', 'Exercise stored.');
     }
 
@@ -74,7 +92,7 @@ class ExerciseController extends Controller
      */
     public function update(ExerciseUpdateRequest $request, Exercise $exercise): RedirectResponse
     {
-        $exercise->update($request->validated());
+        $this->exerciseRepository->update($exercise, $request->validated());
         return redirect("exercises/$exercise->id");
     }
 }
