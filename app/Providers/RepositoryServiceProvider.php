@@ -51,7 +51,6 @@ class RepositoryServiceProvider extends ServiceProvider
         MealTypeRepositoryInterface::class => MealTypeRepository::class,
         RelaxationTimeRepositoryInterface::class => RelaxationTimeRepository::class,
         ScheduleRepositoryInterface::class => ScheduleRepository::class,
-        SettingRepositoryInterface::class => SettingRepository::class,
         UserRepositoryInterface::class => UserRepository::class,
         UserStatusRepositoryInterface::class => UserStatusRepository::class,
         UserTypeRepositoryInterface::class => UserTypeRepository::class,

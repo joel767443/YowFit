@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Class WeightTracking
  * @method static create(array $array)
  * @method static where(string $string, int|string|null $id)
+ * @property int user_id
+ * @property double weight
  */
 class WeightTracking extends Model
 {

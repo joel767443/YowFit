@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create(array $array)
- * @property mixed $id
+ * @property int $id
  * @property string name
  * @property string slug
  * @property int sortOrder
@@ -15,4 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserStatus extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'sort_order',
+    ];
 }

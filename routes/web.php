@@ -6,7 +6,6 @@ use App\Http\Controllers\Web\ExerciseTypeController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MealController;
 use App\Http\Controllers\Web\ScheduleController;
-use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\SiteController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\WeightTrackingController;
@@ -39,7 +38,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('weight-tracking/log', [WeightTrackingController::class, 'log'])->name('weight-log.index');
     Route::post('weight-tracking/log', [WeightTrackingController::class, 'store'])->name('weight-log.store');
     Route::get('my-schedule', [ScheduleController::class, 'show']);
-    Route::get('settings', [SettingController::class, 'index']);
-    Route::post('settings/{setting}', [SettingController::class, 'update'])->name('settings.update');
 });
 

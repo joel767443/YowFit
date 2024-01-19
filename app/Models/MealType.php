@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class MealType
- * @property mixed $id
+ * @property int $id
+ * @property string $name
+ * @property string $slug
  */
 class MealType extends Model
 {
