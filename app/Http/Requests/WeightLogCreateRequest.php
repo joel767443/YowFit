@@ -28,9 +28,7 @@ class WeightLogCreateRequest extends FormRequest
     {
         return [
             'weight' => 'numeric|required',
-            'recorded_at' => 'string|nullable',
             'user_id' => 'integer',
-
         ];
     }
 }

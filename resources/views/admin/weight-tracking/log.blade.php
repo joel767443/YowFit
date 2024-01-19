@@ -33,10 +33,7 @@
                                 <input type="text" class="form-control" id="weight" name="weight" value="">
                                 <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $user->id }}">
                             </div>
-                            <div class="form-group mb-2">
-                                <label for="recorded_at">Recorded at:</label>
-                                <input type="text" class="form-control" id="recorded_at" name="recorded_at" value="">
-                            </div>
+                            <br/>
                             <button type="submit" class="btn btn-sm btn-primary">Save</button>
                         </form>
                     </div>

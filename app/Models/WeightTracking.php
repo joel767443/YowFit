@@ -27,7 +27,6 @@ class WeightTracking extends Model
     protected $fillable = [
         'user_id',
         'weight',
-        'recorded_at',
     ];
 
     /**

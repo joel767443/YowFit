@@ -4,27 +4,32 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WeightLogCreateRequest;
-use App\Models\WeightTracking;
+use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
 
 /**
  * Class WeightTrackingController
  */
 class WeightTrackingController extends Controller
 {
+    private WeightTrackingRepositoryInterface $weightTrackingRepository;
+
+    /**
+     * @param WeightTrackingRepositoryInterface $weightTrackingRepository
+     */
+    public function __construct(WeightTrackingRepositoryInterface $weightTrackingRepository)
+    {
+        $this->weightTrackingRepository = $weightTrackingRepository;
+    }
+
     /**
      * @return View
      */
     public function show(): View
     {
-        $weightData = WeightTracking::where('user_id', auth()->id())
-            ->latest('id')
-            ->take(8)
-            ->get();
-
+        $weightData = $this->weightTrackingRepository->getWeightData();
         return view('admin.weight-tracking.show', compact('weightData'));
     }
 
@@ -42,7 +47,7 @@ class WeightTrackingController extends Controller
      */
     public function store(WeightLogCreateRequest $request): RedirectResponse
     {
-        WeightTracking::create($request->validated());
+        $this->weightTrackingRepository->create($request->validated());
         return redirect('weight-tracking')->with('success', 'Log added successfully.');
     }
 }
