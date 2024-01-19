@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateMealRequest;
 use App\Http\Requests\MealUpdateRequest;
 use App\Models\Meal;
-use App\Models\MealType;
+use App\Repositories\Contracts\MealRepositoryInterface;
+use App\Repositories\Contracts\MealTypeRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,12 +18,29 @@ use Illuminate\Http\Request;
 class MealController extends Controller
 {
     /**
+     * @var $mealRepository MealRepositoryInterface
+     */
+    protected MealRepositoryInterface $mealRepository;
+    /** @var $mealTypeRepository MealTypeRepositoryInterface  */
+    protected MealTypeRepositoryInterface $mealTypeRepository;
+
+    /**
+     * @param MealRepositoryInterface $mealRepository
+     * @param MealTypeRepositoryInterface $mealTypeRepository
+     */
+    public function __construct(MealRepositoryInterface $mealRepository, MealTypeRepositoryInterface $mealTypeRepository)
+    {
+        $this->mealRepository = $mealRepository;
+        $this->mealTypeRepository = $mealTypeRepository;
+    }
+
+    /**
      * @param Request $request
      * @return View
      */
     public function index(Request $request): View
     {
-        $meals = Meal::search($request->input('search'))->paginate(env('PER_PAGE'));
+        $meals = $this->mealRepository->getAll($request);
         return view('admin.meal.index', compact('meals'));
     }
 
@@ -32,9 +50,7 @@ class MealController extends Controller
      */
     public function show(Meal $meal): View
     {
-        return view('admin.meal.show', [
-            'meal' => $meal,
-        ]);
+        return view('admin.meal.show', compact('meal'));
     }
 
     /**
@@ -45,7 +61,7 @@ class MealController extends Controller
     {
         return view('admin.meal.edit', [
             'meal' => $meal,
-            'mealTypes' => MealType::all(),
+            'mealTypes' => $this->mealTypeRepository->getAll(),
         ]);
     }
 
@@ -54,7 +70,7 @@ class MealController extends Controller
      */
     public function create(): view
     {
-        return view('admin.meal.create', ['mealTypes' => MealType::all()]);
+        return view('admin.meal.create', ['mealTypes' => $this->mealTypeRepository->getAll()]);
     }
 
     /**
@@ -63,8 +79,8 @@ class MealController extends Controller
      */
     public function store(CreateMealRequest $request): RedirectResponse
     {
-        Meal::create($request->validated());
-        return redirect('meals')->with('success', 'test');
+        $this->mealRepository->create($request->validated());
+        return redirect('meals')->with('success', 'Meal created successfully.');
     }
 
     /**
@@ -74,7 +90,7 @@ class MealController extends Controller
      */
     public function update(MealUpdateRequest $request, Meal $meal): RedirectResponse
     {
-        $meal->update($request->validated());
+        $this->mealRepository->update($meal, $request->validated());
         return redirect("meals/$meal->id");
     }
 }

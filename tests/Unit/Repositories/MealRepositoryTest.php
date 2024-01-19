@@ -4,6 +4,7 @@ namespace Tests\Unit\Repositories;
 
 use App\Models\Meal;
 use App\Models\MealType;
+use App\Repositories\BaseRepository;
 use App\Repositories\MealRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -16,12 +17,12 @@ class MealRepositoryTest extends TestCase
     use RefreshDatabase;
 
     /** @var MealRepository */
-    private MealRepository $mealRepository;
+    private MealRepository $repository;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->mealRepository = new MealRepository(new Meal());
+        $this->repository = new MealRepository(new Meal());
     }
 
     /** @test */
@@ -35,7 +36,7 @@ class MealRepositoryTest extends TestCase
             'meal_type_id' => MealType::factory()->create()->id,
         ];
 
-        $createdMeal = $this->mealRepository->create($mealData);
+        $createdMeal = $this->repository->create($mealData);
 
         $this->assertInstanceOf(Meal::class, $createdMeal);
         $this->assertDatabaseHas('meals', ['id' => $createdMeal->id]);
@@ -45,7 +46,7 @@ class MealRepositoryTest extends TestCase
     public function it_can_find_meal_by_id()
     {
         $meal = Meal::factory()->create();
-        $foundMeal = $this->mealRepository->findById($meal->id);
+        $foundMeal = $this->repository->findOneBy('id', $meal->id);
         $this->assertInstanceOf(Meal::class, $foundMeal);
         $this->assertEquals($meal->id, $foundMeal->id);
     }
@@ -56,7 +57,7 @@ class MealRepositoryTest extends TestCase
         $meal = Meal::factory()->create();
         $updatedData = ['name' => 'Updated Chicken Salad'];
 
-        $updatedMeal = $this->mealRepository->update($meal, $updatedData);
+        $updatedMeal = $this->repository->update($meal, $updatedData);
 
         $this->assertInstanceOf(Meal::class, $updatedMeal);
         $this->assertEquals('Updated Chicken Salad', $updatedMeal->name);
@@ -66,7 +67,7 @@ class MealRepositoryTest extends TestCase
     public function it_can_delete_meal()
     {
         $meal = Meal::factory()->create();
-        $this->mealRepository->delete($meal);
+        $this->repository->delete($meal);
         $this->assertDatabaseMissing('meals', ['id' => $meal->id]);
     }
 }

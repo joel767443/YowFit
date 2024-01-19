@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('exercises', ExerciseController::class);
     Route::resource('exerciseTimes', ExerciseTimeController::class);
     Route::resource('meals', MealController::class);
+
     Route::get('weight-tracking', [WeightTrackingController::class, 'show']);
     Route::get('weight-tracking/log', [WeightTrackingController::class, 'log'])->name('weight-log.index');
     Route::post('weight-tracking/log', [WeightTrackingController::class, 'store'])->name('weight-log.store');

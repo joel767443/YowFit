@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class ApiUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new AuthController instance.

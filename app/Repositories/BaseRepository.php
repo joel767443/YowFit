@@ -2,13 +2,16 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
 
 /**
  *  class BaseRepository
  */
-class BaseRepository
+class BaseRepository implements BaseRepositoryInterface
 {
     /**
      * @var Model
@@ -53,11 +56,15 @@ class BaseRepository
     }
 
     /**
-     * @return Collection
+     * @param Request|null $request
+     * @return LengthAwarePaginator
      */
-    public function getAll(): Collection
+    public function getAll(Request $request = null): LengthAwarePaginator
     {
-        return $this->model->all();
+        if ($request) {
+            return $this->model::search($request->input('search'))->paginate(env('PER_PAGE'));
+        }
+        return $this->model::paginate(env('PER_PAGE'));
     }
 
     /**
