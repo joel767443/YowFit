@@ -34,7 +34,7 @@ class ScheduleController extends Controller
     public function show(): View
     {
         $currentDayOfWeek = Carbon::now()->format('l');
-        $schedule = $this->scheduleRepository->getFullSchedule(auth()->id(), $currentDayOfWeek);
+        $schedule = $this->scheduleRepository->getTodayScheduleForUser(auth()->id(), $currentDayOfWeek);
         $result = ScheduleService::formatSchedule($schedule);
         return view('admin.schedule.index', compact('currentDayOfWeek', 'result', 'schedule'));
     }

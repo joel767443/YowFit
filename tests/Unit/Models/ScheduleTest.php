@@ -103,7 +103,7 @@ class ScheduleTest extends TestCase
         RelaxationTime::factory()->create(['schedule_id' => $schedule->id]);
 
         $scheduleRepository = new ScheduleRepository($schedule);
-        $fullSchedule = $scheduleRepository->getFullSchedule($user->id, 'Monday');
+        $fullSchedule = $scheduleRepository->getTodayScheduleForUser($user->id, 'Monday');
 
         $this->assertInstanceOf(Schedule::class, $fullSchedule);
         $this->assertEquals('Monday', $fullSchedule->day_of_week);
