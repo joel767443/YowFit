@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExerciseCreateRequest;
-use App\Http\Requests\ExerciseUpdateRequest;
+use App\Http\Requests\ExerciseRequest;
+use App\Http\Requests\ExerciseRequest;
 use App\Models\Exercise;
 use App\Repositories\Contracts\ExerciseRepositoryInterface;
 use App\Repositories\Contracts\ExerciseTypeRepositoryInterface;
@@ -76,21 +76,21 @@ class ExerciseController extends Controller
     }
 
     /**
-     * @param ExerciseCreateRequest $request
+     * @param ExerciseRequest $request
      * @return RedirectResponse
      */
-    public function store(ExerciseCreateRequest $request): RedirectResponse
+    public function store(ExerciseRequest $request): RedirectResponse
     {
         $this->exerciseRepository->create($request->validated());
         return redirect('exercises')->with('success', 'Exercise stored.');
     }
 
     /**
-     * @param ExerciseUpdateRequest $request
+     * @param ExerciseRequest $request
      * @param Exercise $exercise
      * @return RedirectResponse
      */
-    public function update(ExerciseUpdateRequest $request, Exercise $exercise): RedirectResponse
+    public function update(ExerciseRequest $request, Exercise $exercise): RedirectResponse
     {
         $this->exerciseRepository->update($exercise, $request->validated());
         return redirect("exercises/$exercise->id");

@@ -8,6 +8,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+/**
+ * Class SiteController
+ */
 class SiteController extends Controller
 {
     /**

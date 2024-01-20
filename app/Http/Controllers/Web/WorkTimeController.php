@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateWorkTimeRequest;
-use App\Http\Requests\WorkTimeUpdateRequest;
+use App\Http\Requests\WorkTimeRequest;
+use App\Http\Requests\WorkTimeRequest;
 use App\Models\WorkTime;
 use App\Repositories\Contracts\WorkTimeRepositoryInterface;
 use Illuminate\Contracts\View\View;
@@ -63,21 +63,21 @@ class WorkTimeController extends Controller
     }
 
     /**
-     * @param CreateWorkTimeRequest $request
+     * @param WorkTimeRequest $request
      * @return RedirectResponse
      */
-    public function store(CreateWorkTimeRequest $request): RedirectResponse
+    public function store(WorkTimeRequest $request): RedirectResponse
     {
         $this->workTimeRepository->create($request->validated());
         return redirect('workTimes')->with('success', 'WorkTime created successfully.');
     }
 
     /**
-     * @param WorkTimeUpdateRequest $request
+     * @param WorkTimeRequest $request
      * @param WorkTime $workTime
      * @return RedirectResponse
      */
-    public function update(WorkTimeUpdateRequest $request, WorkTime $workTime): RedirectResponse
+    public function update(WorkTimeRequest $request, WorkTime $workTime): RedirectResponse
     {
         $this->workTimeRepository->update($workTime, $request->validated());
         return redirect("workTimes/$workTime->id");

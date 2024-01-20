@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateExerciseTypeRequest;
+use App\Http\Requests\ExerciseTypeRequest;
 use App\Repositories\Contracts\ExerciseTypeRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -43,10 +43,10 @@ class ExerciseTypeController extends Controller
     }
 
     /**
-     * @param CreateExerciseTypeRequest $request
+     * @param ExerciseTypeRequest $request
      * @return RedirectResponse
      */
-    public function store(CreateExerciseTypeRequest $request): RedirectResponse
+    public function store(ExerciseTypeRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::slug($request->validated('name'));

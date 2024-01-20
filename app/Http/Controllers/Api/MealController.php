@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateMealRequest;
-use App\Http\Requests\MealUpdateRequest;
+use App\Http\Requests\MealRequest;
+use App\Http\Requests\MealRequest;
 use App\Models\Meal;
 use App\Repositories\MealRepository;
 use Illuminate\Http\JsonResponse;
@@ -34,10 +34,10 @@ class MealController extends Controller
     }
 
     /**
-     * @param CreateMealRequest $request
+     * @param MealRequest $request
      * @return JsonResponse
      */
-    public function store(CreateMealRequest $request): JsonResponse
+    public function store(MealRequest $request): JsonResponse
     {
         return response()->json(
             MealRepository::create($request)
@@ -45,11 +45,11 @@ class MealController extends Controller
     }
 
     /**
-     * @param MealUpdateRequest $request
+     * @param MealRequest $request
      * @param Meal $meal
      * @return JsonResponse
      */
-    public function update(MealUpdateRequest $request, Meal $meal): JsonResponse
+    public function update(MealRequest $request, Meal $meal): JsonResponse
     {
         return response()->json(
             MealRepository::update($request, $meal)

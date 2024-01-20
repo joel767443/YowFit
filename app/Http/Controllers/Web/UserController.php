@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\UserStatusRepositoryInterface;
@@ -73,11 +73,11 @@ class UserController extends Controller
     }
 
     /**
-     * @param UpdateUserRequest $request
+     * @param UserRequest $request
      * @param User $user
      * @return RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user): RedirectResponse
+    public function update(UserRequest $request, User $user): RedirectResponse
     {
         $this->userRepository->update($user, $request->validated());
         return redirect("users/$user->id");

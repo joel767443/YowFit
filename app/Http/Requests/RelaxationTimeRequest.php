@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class WorkTimeUpdateRequest
+ * Class RelaxationTimeRequest
  */
-class WorkTimeUpdateRequest extends FormRequest
+class RelaxationTimeRequest  extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,8 @@ class WorkTimeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'work_time_from' => 'required|date_format:H:i',
-            'work_time_to' => 'required|date_format:H:i|after:work_time_from',
-            'type' => 'required|in:Job,Personal,Freelance',
+            'time' => 'required|date_format:H:i',
+            'description' => 'required|string',
             'schedule_id' => 'required|exists:schedules,id',
         ];
     }

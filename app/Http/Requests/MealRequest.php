@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class UpdateUserRequest
+ * Class MealRequest
  */
-class UpdateUserRequest extends FormRequest
+class MealRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'user_type_id' => 'exists:user_types,id',
-            'user_status_id' => 'exists:user_statuses,id',
-            'password' => 'required|string|min:8',
+            'description' => 'required|string',
+            'ingredients' => 'nullable|string',
+            'instructions' => 'nullable|string',
+            'meal_type_id' => 'required|exists:meal_types,id',
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExerciseTimeCreateRequest;
+use App\Http\Requests\ExerciseTimeRequest;
 use App\Models\ExerciseTime;
 use Illuminate\Http\JsonResponse;
 
@@ -13,10 +13,10 @@ use Illuminate\Http\JsonResponse;
 class ExerciseTimeController extends Controller
 {
     /**
-     * @param ExerciseTimeCreateRequest $request
+     * @param ExerciseTimeRequest $request
      * @return JsonResponse
      */
-    public function store(ExerciseTimeCreateRequest $request): JsonResponse
+    public function store(ExerciseTimeRequest $request): JsonResponse
     {
         $exerciseTime = ExerciseTime::create($request->validated());
         return response()->json([

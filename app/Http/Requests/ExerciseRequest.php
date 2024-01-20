@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class MealUpdateRequest
+ * Class ExerciseRequest
  */
-class MealUpdateRequest extends FormRequest
+class ExerciseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +28,8 @@ class MealUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'ingredients' => 'nullable|string',
-            'instructions' => 'nullable|string',
-            'meal_type_id' => 'required|exists:meal_types,id',
+            'link' => 'nullable|url',
+            'exercise_type_id' => 'required|exists:exercise_types,id',
         ];
     }
 }

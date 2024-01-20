@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateRelaxationTimeRequest;
-use App\Http\Requests\RelaxationTimeUpdateRequest;
+use App\Http\Requests\RelaxationTimeRequest;
+use App\Http\Requests\RelaxationTimeRequest;
 use App\Models\RelaxationTime;
 use App\Repositories\Contracts\RelaxationTimeRepositoryInterface;
 use Illuminate\Contracts\View\View;
@@ -63,21 +63,21 @@ class RelaxationTimeController extends Controller
     }
 
     /**
-     * @param CreateRelaxationTimeRequest $request
+     * @param RelaxationTimeRequest $request
      * @return RedirectResponse
      */
-    public function store(CreateRelaxationTimeRequest $request): RedirectResponse
+    public function store(RelaxationTimeRequest $request): RedirectResponse
     {
         $this->relaxationTimeRepository->create($request->validated());
         return redirect('relaxationTimes')->with('success', 'RelaxationTime created successfully.');
     }
 
     /**
-     * @param RelaxationTimeUpdateRequest $request
+     * @param RelaxationTimeRequest $request
      * @param RelaxationTime $relaxationTime
      * @return RedirectResponse
      */
-    public function update(RelaxationTimeUpdateRequest $request, RelaxationTime $relaxationTime): RedirectResponse
+    public function update(RelaxationTimeRequest $request, RelaxationTime $relaxationTime): RedirectResponse
     {
         $this->relaxationTimeRepository->update($relaxationTime, $request->validated());
         return redirect("relaxationTimes/$relaxationTime->id");

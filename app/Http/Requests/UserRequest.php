@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ExerciseUpdateRequest
+ * Class UserRequest
  */
-class ExerciseTimeCreateRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,11 @@ class ExerciseTimeCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'exercise_time_from' => 'required|date_format:H:i:s',
-            'exercise_time_to' => 'required|date_format:H:i:s|after:exercise_time_from',
-            'schedule_id' => 'required|exists:schedules,id',
-            'exercise_id' => 'required|exists:exercises,id',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'user_type_id' => 'exists:user_types,id',
+            'user_status_id' => 'exists:user_statuses,id',
+            'password' => 'required|string|min:8',
         ];
     }
 }
