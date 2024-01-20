@@ -8,12 +8,14 @@ use App\Models\RelaxationTime;
 use App\Models\Schedule;
 use App\Models\User;
 use App\Models\WorkTime;
+use App\Repositories\Contracts\ScheduleRepositoryInterface;
 use App\Repositories\ScheduleRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
  * Class ScheduleTest
+ * @property ScheduleRepositoryInterface $scheduleRepository
  */
 class ScheduleTest extends TestCase
 {
@@ -100,7 +102,8 @@ class ScheduleTest extends TestCase
         EatingTime::factory()->create(['schedule_id' => $schedule->id]);
         RelaxationTime::factory()->create(['schedule_id' => $schedule->id]);
 
-        $fullSchedule = ScheduleRepository::getFullSchedule($user->id, 'Monday');
+        $scheduleRepository = new ScheduleRepository($schedule);
+        $fullSchedule = $scheduleRepository->getFullSchedule($user->id, 'Monday');
 
         $this->assertInstanceOf(Schedule::class, $fullSchedule);
         $this->assertEquals('Monday', $fullSchedule->day_of_week);
