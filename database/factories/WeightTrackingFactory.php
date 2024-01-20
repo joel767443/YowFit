@@ -23,7 +23,6 @@ class WeightTrackingFactory extends Factory
         return [
             'user_id' => $user->id,
             'weight' => 90.5,
-            'recorded_at' => 'Home',
         ];
     }
 }
