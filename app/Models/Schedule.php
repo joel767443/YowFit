@@ -73,29 +73,4 @@ class Schedule extends Model
     {
         return $this->hasMany(WorkTime::class);
     }
-
-    /**
-     * Retrieve the full schedule for a given day.
-     *
-     * @param int $userId
-     * @param string $dayOfWeek
-     * @return Model|null
-     */
-    public static function getFullSchedule(int $userId, string $dayOfWeek): Model|null
-    {
-        return self::with([
-            'exerciseTimes' => function ($query) {
-                $query->orderBy('exercise_time_from');
-            },
-            'eatingTimes' => function ($query) {
-                $query->orderBy('eating_time_from');
-            },
-            'relaxationTimes' => function ($query) {
-                $query->orderBy('time');
-            },
-        ])
-            ->where('user_id', $userId)
-            ->where('day_of_week', $dayOfWeek)
-            ->first();
-    }
 }
