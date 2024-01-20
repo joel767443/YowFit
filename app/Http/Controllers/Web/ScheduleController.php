@@ -32,31 +32,29 @@ class ScheduleController extends Controller
      */
     private function formatSchedule($schedule): array
     {
-        $result = [];
-
-        $data = [
+        $result = [
             $schedule->wakeup_time => 'wakeup time',
             $schedule->sleeping_time => 'time to sleep',
         ];
 
-        foreach ($schedule->exerciseTimes as $exerciseTime) {
-            $data[$exerciseTime->time] = "Exercise - " . $exerciseTime->exercise->name . " (" . $exerciseTime->exercise->description . ")";
+        $activityMappings = [
+            'exerciseTimes' => ['prefix' => 'Exercise - ', 'property' => 'exercise'],
+            'eatingTimes' => ['prefix' => 'Meal - ', 'property' => 'meal'],
+            'relaxationTimes' => ['prefix' => 'Relax - ', 'property' => null],
+        ];
 
+        foreach ($activityMappings as $activityType => $config) {
+            foreach ($schedule->{$activityType} as $activityTime) {
+                $prefix = $config['prefix'];
+                $property = $config['property'];
+
+                $description = $property ? $activityTime->$property->name . " (" . $activityTime->$property->description . ")" : $activityTime->description;
+
+                $result[$activityTime->time] = $prefix . $description;
+            }
         }
 
-        foreach ($schedule->eatingTimes as $exerciseTime) {
-            $data[$exerciseTime->time] = "Meal - " . $exerciseTime->meal->name . " (" . $exerciseTime->meal->description . ")";
-        }
-
-        foreach ($schedule->relaxationTimes as $relaxationTime) {
-            $data[$relaxationTime->time] = "Relax - " . $relaxationTime->description;
-        }
-
-        ksort($data);
-
-        foreach ($data as $time => $activity) {
-            $result[$time] = $activity;
-        }
+        ksort($result);
 
         return $result;
     }
