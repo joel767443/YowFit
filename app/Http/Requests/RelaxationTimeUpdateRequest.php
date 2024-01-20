@@ -25,6 +25,10 @@ class RelaxationTimeUpdateRequest  extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'time' => 'required|date_format:H:i',
+            'description' => 'required|string',
+            'schedule_id' => 'required|exists:schedules,id',
+        ];
     }
 }

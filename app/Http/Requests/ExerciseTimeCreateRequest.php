@@ -26,10 +26,10 @@ class ExerciseTimeCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'exercise_time_from' => 'required',
-            'exercise_time_to' => 'required',
-            'schedule_id' => 'required',
-            'exercise_id' => 'required',
+            'exercise_time_from' => 'required|date_format:H:i:s',
+            'exercise_time_to' => 'required|date_format:H:i:s|after:exercise_time_from',
+            'schedule_id' => 'required|exists:schedules,id',
+            'exercise_id' => 'required|exists:exercises,id',
         ];
     }
 }

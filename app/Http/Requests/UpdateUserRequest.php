@@ -26,11 +26,11 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255',
-            'email' => 'email|max:255',
-            'password' => 'nullable|string|min:6',
-            'user_type_id' => 'integer',
-            'user_status_id' => 'integer',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'user_type_id' => 'exists:user_types,id',
+            'user_status_id' => 'exists:user_statuses,id',
+            'password' => 'required|string|min:8',
         ];
     }
 }

@@ -26,11 +26,11 @@ class CreateMealRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required",
-            "description" => "required",
-            "ingredients" => "string|nullable",
-            "instructions" => "string|nullable",
-            'meal_type_id' => 'required|integer'
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ingredients' => 'nullable|string',
+            'instructions' => 'nullable|string',
+            'meal_type_id' => 'required|exists:meal_types,id',
         ];
     }
 }

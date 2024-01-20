@@ -26,10 +26,10 @@ class ExerciseCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'link' => 'nullable|string',
-            'exercise_type_id' => 'required|integer'
+            'link' => 'nullable|url',
+            'exercise_type_id' => 'required|exists:exercise_types,id',
         ];
     }
 }

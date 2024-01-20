@@ -26,10 +26,10 @@ class WorkTimeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'work_time_from' => 'required',
-            'work_time_to' => 'required',
-            'type' => 'required',
-            'schedule_id' => 'required',
+            'work_time_from' => 'required|date_format:H:i',
+            'work_time_to' => 'required|date_format:H:i|after:work_time_from',
+            'type' => 'required|in:Job,Personal,Freelance',
+            'schedule_id' => 'required|exists:schedules,id',
         ];
     }
 }

@@ -26,8 +26,8 @@ class CreateExerciseTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'slug' => 'string',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|alpha_dash|unique:exercise_types,slug',
         ];
     }
 }

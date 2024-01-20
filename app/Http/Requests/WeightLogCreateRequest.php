@@ -27,8 +27,8 @@ class WeightLogCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'weight' => 'numeric|required',
-            'user_id' => 'integer',
+            'user_id' => 'required|exists:users,id',
+            'weight' => 'required|numeric|min:0',
         ];
     }
 }

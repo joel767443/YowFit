@@ -27,8 +27,10 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
+            'email' => 'required|email|unique:users,email',
+            'user_type_id' => 'exists:user_types,id', // Adjust the table name if needed
+            'user_status_id' => 'exists:user_statuses,id', // Adjust the table name if needed
+            'password' => 'required|string|min:8',
         ];
     }
 }
