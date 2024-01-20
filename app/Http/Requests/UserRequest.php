@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
             'email' => 'required|email|unique:users,email',
             'user_type_id' => 'exists:user_types,id',
             'user_status_id' => 'exists:user_statuses,id',
-            'password' => 'required|string|min:8',
+            'password' => 'string|min:8',
         ];
     }
 }

@@ -29,7 +29,6 @@ class UserControllerTest extends TestCase
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'user_type_id' => $userType->id,
-            'password' => $user->password,
         ];
 
         $response = $this->put("/users/$user->id", $newUserData);
@@ -67,8 +66,7 @@ class UserControllerTest extends TestCase
 
         $newUserData = [
             'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'password' => 'password',
+            'email' =>  $this->faker->email,
         ];
 
         $response = $this->put("/users/$user->id", $newUserData);
@@ -101,7 +99,6 @@ class UserControllerTest extends TestCase
         $response = $this->put("/users/$user->id", [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
-            'password' => 'password',
             'user_type_id' => $newUserType->id,
         ]);
 
