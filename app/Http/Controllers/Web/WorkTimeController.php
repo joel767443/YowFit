@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WorkTimeRequest;
-use App\Http\Requests\WorkTimeRequest;
 use App\Models\WorkTime;
 use App\Repositories\Contracts\WorkTimeRepositoryInterface;
 use Illuminate\Contracts\View\View;

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExerciseRequest;
-use App\Http\Requests\ExerciseRequest;
 use App\Models\Exercise;
 use App\Repositories\Contracts\ExerciseRepositoryInterface;
 use App\Repositories\Contracts\ExerciseTypeRepositoryInterface;
