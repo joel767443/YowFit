@@ -73,13 +73,13 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserRequest $request
+     * @param Request $request
      * @param User $user
      * @return RedirectResponse
      */
-    public function update(UserRequest $request, User $user): RedirectResponse
+    public function update(Request $request, User $user): RedirectResponse
     {
-        $this->userRepository->update($user, $request->validated());
+        $this->userRepository->update($user, $request->all());
         return redirect("users/$user->id");
     }
 
