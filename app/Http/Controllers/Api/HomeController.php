@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\WeightTracking;
-use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Class HomeController
@@ -24,11 +24,11 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Renderable
+     * @return JsonResponse
      */
-    public function index(): Renderable
+    public function index(): JsonResponse
     {
         $weightData = WeightTracking::where('user_id', auth()->id())->orderBy('created_at')->take(8)->get();
-        return view('home', compact('weightData'));
+        return response()->json($weightData);
     }
 }

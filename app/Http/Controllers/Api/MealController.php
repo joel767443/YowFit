@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MealRequest;
-use App\Http\Requests\MealRequest;
 use App\Models\Meal;
-use App\Repositories\MealRepository;
+use App\Repositories\Contracts\MealRepositoryInterface;
+use App\Repositories\Contracts\MealTypeRepositoryInterface;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -16,12 +18,32 @@ use Illuminate\Http\Request;
 class MealController extends Controller
 {
     /**
+     * @var $mealRepository MealRepositoryInterface
+     */
+    protected MealRepositoryInterface $mealRepository;
+    /** @var $mealTypeRepository MealTypeRepositoryInterface  */
+    protected MealTypeRepositoryInterface $mealTypeRepository;
+
+    /**
+     * @param MealRepositoryInterface $mealRepository
+     * @param MealTypeRepositoryInterface $mealTypeRepository
+     */
+    public function __construct(MealRepositoryInterface $mealRepository, MealTypeRepositoryInterface $mealTypeRepository)
+    {
+        $this->mealRepository = $mealRepository;
+        $this->mealTypeRepository = $mealTypeRepository;
+    }
+
+    /**
      * @param Request $request
      * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
-        return response()->json(MealRepository::fetchAllPaginated($request,true));
+        $meals = $this->mealRepository->getAll($request);
+        return response()->json([
+            $meals
+        ]);
     }
 
     /**
@@ -39,9 +61,7 @@ class MealController extends Controller
      */
     public function store(MealRequest $request): JsonResponse
     {
-        return response()->json(
-            MealRepository::create($request)
-        );
+        return response()->json($this->mealRepository->create($request->validated()));
     }
 
     /**
@@ -51,8 +71,6 @@ class MealController extends Controller
      */
     public function update(MealRequest $request, Meal $meal): JsonResponse
     {
-        return response()->json(
-            MealRepository::update($request, $meal)
-        );
+        return response()->json($this->mealRepository->update($meal, $request->validated()));
     }
 }

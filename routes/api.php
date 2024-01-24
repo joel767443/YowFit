@@ -4,9 +4,13 @@ use App\Http\Controllers\Api\ApiCalendarEntryController;
 use App\Http\Controllers\Api\ApiExerciseController;
 use App\Http\Controllers\Api\ApiMealController;
 use App\Http\Controllers\Api\ApiScheduleController;
+use App\Http\Controllers\Api\ExerciseController;
+use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\MealController;
+use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ApiWeightTrackingController;
+use App\Http\Controllers\Api\WeightTrackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +33,11 @@ Route::post('login', [UserController::class, "login"]);
 Route::post('register', [UserController::class, "register"]);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class);
     Route::resource('meals', MealController::class);
+    Route::resource('exercises', ExerciseController::class);
+    Route::get('my-schedule', [ScheduleController::class, 'show']);
+    Route::get('weight-tracking', [WeightTrackingController::class, 'show']);
+    Route::post('weight-tracking/log', [WeightTrackingController::class, 'store'])->name('weight-log.store');
 });
