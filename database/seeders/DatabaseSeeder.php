@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             MealSeeder::class,
             ExerciseTypeSeeder::class,
             ExerciseSeeder::class,
-            ScheduleSeeder::class,
             EatingTimeSeeder::class,
             ExerciseTimeSeeder::class,
             RelaxationTimeSeeder::class,

@@ -17,14 +17,7 @@ class WeightTrackingSeeder extends Seeder
      */
     public function run(): void
     {
-        $recordedAtPlaces = [
-            "home",
-            "gym",
-            "GF's house",
-            "Other",
-        ];
-
-        $userId = User::where('email', 'admin@example.com')->first()?->id;
+        $userId = User::where('email', 'admin@yowfit.com')->first()?->id;
 
         for ($i = 0; $i < 16; $i++) {
             $weight = 116.0 - ($i * 1.9);
@@ -32,7 +25,6 @@ class WeightTrackingSeeder extends Seeder
             WeightTracking::create([
                 'user_id' => $userId,
                 'weight' => $weight,
-                'recorded_at' => collect($recordedAtPlaces)->random(),
             ]);
         }
     }

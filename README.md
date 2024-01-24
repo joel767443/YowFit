@@ -124,7 +124,7 @@ php artisan migrate --seed
 
 npm run build
 
-user admin@example.com
+user admin@yowfit.com
 pass password
 
 ## Technical

@@ -38,6 +38,8 @@ class UserObserver
             $this->scheduleRepository->create([
                 'user_id' => $user->id,
                 'day_of_week' => $dayName,
+                'wakeup_time' => '06:00:00',
+                'sleeping_time' => '22:00:00',
             ]);
         }
     }
