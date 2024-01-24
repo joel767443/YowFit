@@ -47,7 +47,12 @@ class ExerciseController extends Controller
      */
     public function show(Exercise $exercise): JsonResponse
     {
-        return response()->json($exercise);
+        try {
+            Exercise::where('id', $exercise);
+//            return response()->json($exercise);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
     /**
