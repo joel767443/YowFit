@@ -3,22 +3,23 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\WeightTracking;
+use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
 use Illuminate\Contracts\Support\Renderable;
 
 /**
  * Class HomeController
+ * @property WeightTrackingRepositoryInterface $weightTrackingRepository
  */
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * ScheduleController constructor.
      *
-     * @return void
+     * @param WeightTrackingRepositoryInterface $weightTrackingRepository
      */
-    public function __construct()
+    public function __construct(WeightTrackingRepositoryInterface $weightTrackingRepository)
     {
-        $this->middleware('auth');
+        $this->weightTrackingRepository = $weightTrackingRepository;
     }
 
     /**
@@ -28,7 +29,7 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        $weightData = WeightTracking::where('user_id', auth()->id())->orderBy('created_at')->take(8)->get();
+        $weightData = $this->weightTrackingRepository->getWeightData();
         return view('home', compact('weightData'));
     }
 }

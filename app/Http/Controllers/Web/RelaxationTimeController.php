@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RelaxationTimeRequest;
-use App\Http\Requests\RelaxationTimeRequest;
 use App\Models\RelaxationTime;
 use App\Repositories\Contracts\RelaxationTimeRepositoryInterface;
 use Illuminate\Contracts\View\View;
