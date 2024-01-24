@@ -3,22 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\WeightTracking;
+use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 
 /**
  * Class HomeController
+ * @property WeightTrackingRepositoryInterface $weightTrackingRepository
  */
 class HomeController extends Controller
 {
+
     /**
-     * Create a new controller instance.
+     * ScheduleController constructor.
      *
-     * @return void
+     * @param WeightTrackingRepositoryInterface $weightTrackingRepository
      */
-    public function __construct()
+    public function __construct(WeightTrackingRepositoryInterface $weightTrackingRepository)
     {
-        $this->middleware('auth');
+        $this->weightTrackingRepository = $weightTrackingRepository;
     }
 
     /**
@@ -28,7 +30,7 @@ class HomeController extends Controller
      */
     public function index(): JsonResponse
     {
-        $weightData = WeightTracking::where('user_id', auth()->id())->orderBy('created_at')->take(8)->get();
+        $weightData = $this->weightTrackingRepository->getWeightData();
         return response()->json($weightData);
     }
 }

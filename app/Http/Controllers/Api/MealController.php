@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\FormatAPIResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MealRequest;
 use App\Models\Meal;
 use App\Repositories\Contracts\MealRepositoryInterface;
 use App\Repositories\Contracts\MealTypeRepositoryInterface;
-use Illuminate\Contracts\View\View;
+use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
  * Class MealController
+ * @property MealRepositoryInterface $mealRepository
+ * @property MealTypeRepositoryInterface $mealTypeRepository
  */
 class MealController extends Controller
 {
-    /**
-     * @var $mealRepository MealRepositoryInterface
-     */
-    protected MealRepositoryInterface $mealRepository;
-    /** @var $mealTypeRepository MealTypeRepositoryInterface  */
-    protected MealTypeRepositoryInterface $mealTypeRepository;
-
     /**
      * @param MealRepositoryInterface $mealRepository
      * @param MealTypeRepositoryInterface $mealTypeRepository
@@ -40,19 +35,19 @@ class MealController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $meals = $this->mealRepository->getAll($request);
-        return response()->json([
-            $meals
-        ]);
+        return FormatAPIResponse::format(
+            $this->mealRepository->getAll($request), $request
+        );
     }
 
     /**
      * @param Meal $meal
+     * @param Request $request
      * @return JsonResponse
      */
-    public function show(Meal $meal): JsonResponse
+    public function show(Meal $meal, Request $request): JsonResponse
     {
-        return response()->json($meal);
+        return FormatAPIResponse::format($meal, $request);
     }
 
     /**
@@ -61,7 +56,13 @@ class MealController extends Controller
      */
     public function store(MealRequest $request): JsonResponse
     {
-        return response()->json($this->mealRepository->create($request->validated()));
+        try {
+            return FormatAPIResponse::format(
+                $this->mealRepository->create($request->validated()), $request
+            );
+        } catch (Exception $e) {
+            return FormatAPIResponse::formatException($e->getMessage());
+        }
     }
 
     /**
@@ -71,6 +72,12 @@ class MealController extends Controller
      */
     public function update(MealRequest $request, Meal $meal): JsonResponse
     {
-        return response()->json($this->mealRepository->update($meal, $request->validated()));
+        try {
+            return FormatAPIResponse::format(
+                $this->mealRepository->update($meal, $request->validated()), $request
+            );
+        } catch (Exception $e) {
+            return FormatAPIResponse::formatException($e->getMessage());
+        }
     }
 }

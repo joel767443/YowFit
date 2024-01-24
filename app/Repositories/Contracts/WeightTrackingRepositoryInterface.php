@@ -8,4 +8,5 @@ namespace App\Repositories\Contracts;
 interface WeightTrackingRepositoryInterface extends BaseRepositoryInterface
 {
 
+    public function getWeightData();
 }

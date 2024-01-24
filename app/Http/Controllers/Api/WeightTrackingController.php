@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\FormatAPIResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WeightLogCreateRequest;
 use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
-use Illuminate\Contracts\View\View;
+use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /**
  * Class WeightTrackingController
+ * @property WeightTrackingRepositoryInterface $weightTrackingRepository
  */
 class WeightTrackingController extends Controller
 {
     /**
-     * @var WeightTrackingRepositoryInterface
-     */
-    private WeightTrackingRepositoryInterface $weightTrackingRepository;
-
-    /**
+     * WeightTrackingController constructor.
+     *
      * @param WeightTrackingRepositoryInterface $weightTrackingRepository
      */
     public function __construct(WeightTrackingRepositoryInterface $weightTrackingRepository)
@@ -29,12 +27,13 @@ class WeightTrackingController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return JsonResponse
      */
-    public function show(): JsonResponse
+    public function show(Request $request): JsonResponse
     {
         $weightData = $this->weightTrackingRepository->getWeightData();
-        return response()->json($weightData);
+        return FormatAPIResponse::format($weightData, $request);
     }
 
     /**
@@ -43,8 +42,11 @@ class WeightTrackingController extends Controller
      */
     public function store(WeightLogCreateRequest $request): JsonResponse
     {
-        return response()->json(
-            $this->weightTrackingRepository->create($request->validated())
-        );
+        try {
+            $createdWeightLog = $this->weightTrackingRepository->create($request->validated());
+            return FormatAPIResponse::format($createdWeightLog, $request);
+        } catch (Exception $e) {
+            return FormatAPIResponse::formatException($e->getMessage());
+        }
     }
 }

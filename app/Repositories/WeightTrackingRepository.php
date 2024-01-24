@@ -27,7 +27,7 @@ class WeightTrackingRepository extends BaseRepository implements WeightTrackingR
     public function getWeightData(): mixed
     {
         return $this->model::where('user_id', auth()->id())
-            ->latest('id')
+            ->orderBy('created_at')
             ->take(8)
             ->get();
     }

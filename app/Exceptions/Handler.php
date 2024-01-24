@@ -42,7 +42,10 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ModelNotFoundException) {
             if ($request->is('api/*') || $request->wantsJson()) {
-                return response()->json(['error' => 'Resource not found'], 404);
+                return response()->json([
+                    "error" => true,
+                    "status" => 404,
+                    'message' => 'Resource not found'], 404);
             }
         }
 
