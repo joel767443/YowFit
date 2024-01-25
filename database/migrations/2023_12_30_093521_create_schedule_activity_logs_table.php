@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('schedule_activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('schedule_id')->constrained();
+            $table->foreignId('schedule_id')->index()->constrained();
             $table->string('description');
             $table->enum('type', ['exercise', 'work', 'meals', 'relax']);
             $table->date('activity_date');

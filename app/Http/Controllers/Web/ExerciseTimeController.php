@@ -27,6 +27,6 @@ class ExerciseTimeController extends Controller
                 'exercise_time_to' => $exerciseTime->exercise_time_to,
                 'exercise' => $exerciseTime->exercise->name,
             ]
-        ], 200);
+        ]);
     }
 }

@@ -11,10 +11,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
- * @property WorkTimeRepositoryInterface $workTimeRepository
+ * Class WorkTimeController
  */
 class WorkTimeController extends Controller
 {
+    /**
+     * @var WorkTimeRepositoryInterface
+     */
+    protected WorkTimeRepositoryInterface $workTimeRepository;
+
     /**
      * @param WorkTimeRepositoryInterface $workTimeRepository
      */
@@ -48,15 +53,13 @@ class WorkTimeController extends Controller
      */
     public function edit(WorkTime $workTime): View
     {
-        return view('admin.workTime.edit', [
-            'workTime' => $workTime,
-        ]);
+        return view('admin.workTime.edit', ['workTime' => $workTime]);
     }
 
     /**
      * @return View
      */
-    public function create(): view
+    public function create(): View
     {
         return view('admin.workTime.create');
     }

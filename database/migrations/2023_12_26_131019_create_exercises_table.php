@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description');
             $table->string('link')->nullable();
-            $table->foreignId('exercise_type_id')->constrained();
+            $table->foreignId('exercise_type_id')->index()->constrained();
             $table->timestamps();
         });
     }

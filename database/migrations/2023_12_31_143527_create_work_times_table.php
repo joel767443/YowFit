@@ -16,7 +16,7 @@ return new class extends Migration
             $table->time('work_time_from');
             $table->time('work_time_to');
             $table->enum('type', ['Job', 'Personal', 'Freelance']);
-            $table->foreignId('schedule_id')->constrained();
+            $table->foreignId('schedule_id')->index()->constrained();
             $table->timestamps();
         });
     }

@@ -53,13 +53,15 @@
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ url('meals') }}" class="nav-link">Meals</a>
-                            </li>
+                            @if(auth()->user()->hasRole('admin'))
+                                <li class="nav-item">
+                                    <a href="{{ url('meals') }}" class="nav-link">Meals</a>
+                                </li>
+
                             <li class="nav-item">
                                 <a href="{{ url('exercises') }}" class="nav-link">Exercises</a>
                             </li>
-                            @if(auth()->user()->isAdmin())
+
                             <li class="nav-item">
                                 <a href="{{ url('users') }}" class="nav-link">Users</a>
                             </li>
@@ -72,7 +74,9 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a href="{{ url('my-schedule') }}" class="dropdown-item">My schedule</a>
                                     <a href="{{ url('weight-tracking') }}" class="dropdown-item">My Weight</a>
-                                    <a href="{{ url('exercise-types') }}" class="dropdown-item">Exercise Types</a>
+                                    @if(auth()->user()->can('access-exercise-types'))
+                                        <a href="{{ url('exercise-types') }}" class="dropdown-item">Exercise Types</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

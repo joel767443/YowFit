@@ -19,14 +19,9 @@ class WorkTime extends Model
     use HasFactory;
 
     protected $fillable = [
-        'eating_time_from',
-        'eating_time_to',
+        'work_start_time',
+        'work_end_time',
         'meal_id',
         'schedule_id',
     ];
-
-    /**
-     * @var array|string[]
-     */
-    public static array $workTypes = ['Job', 'Personal', 'Freelance'];
 }

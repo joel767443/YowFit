@@ -11,10 +11,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
- * @property RelaxationTimeRepositoryInterface $relaxationTimeRepository
+ * Class RelaxationTimeController
  */
 class RelaxationTimeController extends Controller
 {
+    /**
+     * @var RelaxationTimeRepositoryInterface
+     */
+    protected RelaxationTimeRepositoryInterface $relaxationTimeRepository;
+
     /**
      * @param RelaxationTimeRepositoryInterface $relaxationTimeRepository
      */
@@ -56,7 +61,7 @@ class RelaxationTimeController extends Controller
     /**
      * @return View
      */
-    public function create(): view
+    public function create(): View
     {
         return view('admin.relaxationTime.create');
     }
@@ -68,7 +73,7 @@ class RelaxationTimeController extends Controller
     public function store(RelaxationTimeRequest $request): RedirectResponse
     {
         $this->relaxationTimeRepository->create($request->validated());
-        return redirect('relaxationTimes')->with('success', 'RelaxationTime created successfully.');
+        return redirect()->route('relaxationTimes.index')->with('success', 'RelaxationTime created successfully.');
     }
 
     /**
@@ -79,6 +84,6 @@ class RelaxationTimeController extends Controller
     public function update(RelaxationTimeRequest $request, RelaxationTime $relaxationTime): RedirectResponse
     {
         $this->relaxationTimeRepository->update($relaxationTime, $request->validated());
-        return redirect("relaxationTimes/$relaxationTime->id");
+        return redirect()->route('relaxationTimes.show', ['relaxationTime' => $relaxationTime->id]);
     }
 }

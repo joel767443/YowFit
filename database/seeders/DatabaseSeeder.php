@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             RelaxationTimeSeeder::class,
             WorkTimeSeeder::class,
             WeightTrackingSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }

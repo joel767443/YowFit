@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SiteController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\WeightTrackingController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +28,16 @@ Route::any('/',[SiteController::class, 'index']);
 Auth::routes();
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('users', UserController::class);
-    Route::resource('exercises', ExerciseController::class);
-    Route::resource('exerciseTimes', ExerciseTimeController::class);
-    Route::resource('exercise-types', ExerciseTypeController::class);
-    Route::resource('meals', MealController::class);
 
+//    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('users', UserController::class);
+        Route::resource('exercises', ExerciseController::class);
+        Route::resource('exerciseTimes', ExerciseTimeController::class);
+        Route::resource('exercise-types', ExerciseTypeController::class);
+        Route::resource('meals', MealController::class);
+//    });
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('weight-tracking', [WeightTrackingController::class, 'show']);
     Route::get('weight-tracking/log', [WeightTrackingController::class, 'log'])->name('weight-log.index');
     Route::post('weight-tracking/log', [WeightTrackingController::class, 'store'])->name('weight-log.store');

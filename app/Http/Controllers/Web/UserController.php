@@ -12,20 +12,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-/**
- * Class UserController
- * @property UserRepositoryInterface $userRepository
- * @property UserTypeRepositoryInterface $userTypeRepository
- * @property UserStatusRepositoryInterface $userStatusRepository
- */
 class UserController extends Controller
 {
+    protected UserRepositoryInterface $userRepository;
+    protected UserTypeRepositoryInterface $userTypeRepository;
+    protected UserStatusRepositoryInterface $userStatusRepository;
 
-    /**
-     * @param UserRepositoryInterface $userRepository
-     * @param UserTypeRepositoryInterface $userTypeRepository
-     * @param UserStatusRepositoryInterface $userStatusRepository
-     */
     public function __construct(
         UserRepositoryInterface $userRepository,
         UserTypeRepositoryInterface $userTypeRepository,
@@ -37,33 +29,17 @@ class UserController extends Controller
         $this->userStatusRepository = $userStatusRepository;
     }
 
-    /**
-     * @param Request $request
-     * @return View
-     */
     public function index(Request $request): View
     {
-        return view('admin.user.index', [
-            'users' => $this->userRepository->getAll($request),
-        ]);
+        return view('admin.user.index', ['users' => $this->userRepository->getAll($request)]);
     }
 
-    /**
-     * @param User $user
-     * @return View
-     */
-    public function show(User $user): view
+    public function show(User $user): View
     {
-        return view('admin.user.show', [
-            'user' => $user,
-        ]);
+        return view('admin.user.show', ['user' => $user]);
     }
 
-    /**
-     * @param User $user
-     * @return View
-     */
-    public function edit(User $user): view
+    public function edit(User $user): View
     {
         return view('admin.user.edit', [
             'user' => $user,
@@ -72,21 +48,12 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * @param UserRequest $request
-     * @param User $user
-     * @return RedirectResponse
-     */
     public function update(UserRequest $request, User $user): RedirectResponse
     {
         $this->userRepository->update($user, $request->validated());
-        return redirect("users/$user->id");
+        return redirect("users/{$user->id}");
     }
 
-    /**
-     * @param User $user
-     * @return RedirectResponse
-     */
     public function destroy(User $user): RedirectResponse
     {
         $this->userRepository->delete($user);

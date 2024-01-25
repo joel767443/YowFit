@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->time('eating_time_from');
             $table->time('eating_time_to');
-            $table->foreignId('meal_id')->constrained();
-            $table->foreignId('schedule_id')->constrained();
+            $table->foreignId('meal_id')->index()->constrained();
+            $table->foreignId('schedule_id')->index()->constrained();
             $table->timestamps();
         });
     }

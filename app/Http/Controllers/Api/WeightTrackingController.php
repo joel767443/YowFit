@@ -12,10 +12,11 @@ use Illuminate\Http\Request;
 
 /**
  * Class WeightTrackingController
- * @property WeightTrackingRepositoryInterface $weightTrackingRepository
  */
 class WeightTrackingController extends Controller
 {
+
+    protected WeightTrackingRepositoryInterface $weightTrackingRepository;
     /**
      * WeightTrackingController constructor.
      *

@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->index()->constrained();
             $table->string('day_of_week');
-            $table->time('wakeup_time')->nullable();
-            $table->time('sleeping_time')->nullable();
+            $table->time('wakeup_time');
+            $table->time('sleeping_time');
             $table->timestamps();
         });
     }

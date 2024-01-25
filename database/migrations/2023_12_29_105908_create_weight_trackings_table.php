@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('weight_tracking', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->index()->constrained();
             $table->decimal('weight');
             $table->timestamps();
         });

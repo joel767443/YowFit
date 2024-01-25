@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->time('exercise_time_from');
             $table->time('exercise_time_to');
-            $table->foreignId('schedule_id')->constrained();
-            $table->foreignId('exercise_id')->constrained();
+            $table->foreignId('schedule_id')->index()->constrained();
+            $table->foreignId('exercise_id')->index()->constrained();
             $table->timestamps();
         });
     }

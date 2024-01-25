@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+
 
 /**
  *
@@ -19,11 +21,14 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static when(mixed $search, Closure $param)
  * @method static where(string $string, string $string1)
  * @property int $id
- * @property mixed $schedules
+ * @property Schedule $schedules
+ * @property UserType $userType
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
+
+    const ROLE_ADMIN = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -63,7 +68,7 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return 'admin' === $this->userType->name;
+        return self::ROLE_ADMIN === $this->userType->name;
     }
 
     /**

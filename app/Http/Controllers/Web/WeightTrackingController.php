@@ -17,7 +17,7 @@ class WeightTrackingController extends Controller
     /**
      * @var WeightTrackingRepositoryInterface
      */
-    private WeightTrackingRepositoryInterface $weightTrackingRepository;
+    protected WeightTrackingRepositoryInterface $weightTrackingRepository;
 
     /**
      * @param WeightTrackingRepositoryInterface $weightTrackingRepository
@@ -39,7 +39,7 @@ class WeightTrackingController extends Controller
     /**
      * @return View
      */
-    public function log(): view
+    public function log(): View
     {
         return view('admin.weight-tracking.log', ['user' => Auth::user()]);
     }

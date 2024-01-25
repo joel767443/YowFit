@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->time('time');
             $table->string('description');
-            $table->foreignId('schedule_id')->constrained();
+            $table->foreignId('schedule_id')->index()->constrained();
             $table->timestamps();
         });
     }
