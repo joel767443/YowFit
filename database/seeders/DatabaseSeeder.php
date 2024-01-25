@@ -18,14 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
+            WorkSeeder::class,
+            RestSeeder::class,
             MealTypeSeeder::class,
             MealSeeder::class,
             ExerciseTypeSeeder::class,
             ExerciseSeeder::class,
-            EatingTimeSeeder::class,
-            ExerciseTimeSeeder::class,
-            RelaxationTimeSeeder::class,
-            WorkTimeSeeder::class,
+            ScheduleTimeSeeder::class,
             WeightTrackingSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,

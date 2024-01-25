@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * Class ExerciseTime
+ * Class ScheduleTime
  * @method static create(array $array)
  * @method static where(string $string)
  * @method static whereIn(string $string, int $int)
  */
-class ExerciseTime extends Model
+class ScheduleTime extends Model
 {
     use HasFactory;
 
@@ -20,18 +20,17 @@ class ExerciseTime extends Model
      * @var string[]
      */
     protected $fillable = [
-        'exercise_time_from',
-        'exercise_time_to',
+        'start_time',
+        'end_time',
         'schedule_id',
         'exercise_id',
     ];
 
     /**
-     * Get the exercise associated with the exercise time.
-     * @return BelongsTo
+     * @return MorphTo
      */
-    public function exercise(): BelongsTo
+    public function scheduleable(): MorphTo
     {
-        return $this->belongsTo(Exercise::class);
+        return $this->morphTo();
     }
 }

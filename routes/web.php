@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\ExerciseController;
-use App\Http\Controllers\Web\ExerciseTimeController;
+use App\Http\Controllers\Web\ScheduleTimeController;
 use App\Http\Controllers\Web\ExerciseTypeController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MealController;
@@ -29,13 +29,13 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-//    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('users', UserController::class);
         Route::resource('exercises', ExerciseController::class);
-        Route::resource('exerciseTimes', ExerciseTimeController::class);
+        Route::resource('scheduleTimes', ScheduleTimeController::class);
         Route::resource('exercise-types', ExerciseTypeController::class);
         Route::resource('meals', MealController::class);
-//    });
+    });
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('weight-tracking', [WeightTrackingController::class, 'show']);

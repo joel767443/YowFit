@@ -2,21 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\EatingTime;
-use App\Models\Meal;
+use App\Models\Exercise;
+use App\Models\ScheduleTime;
 use App\Models\Schedule;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<EatingTime>
+ * @extends Factory<ScheduleTime>
  */
-class EatingTimeFactory extends Factory
+class ScheduleTimeFactory extends Factory
 {
     /**
      * @var string
      */
-    protected $model = EatingTime::class;
+    protected $model = ScheduleTime::class;
 
     /**
      * Define the model's default state.
@@ -26,13 +25,13 @@ class EatingTimeFactory extends Factory
     public function definition(): array
     {
         $schedule = Schedule::factory()->create();
-        $meal = Meal::factory()->create();
+        $exercise = Exercise::factory()->create();
 
         return [
-            'eating_time_from' => $this->faker->time,
-            'eating_time_to' => $this->faker->time,
+            'start_time' => $this->faker->time,
+            'end_time' => $this->faker->time,
             'schedule_id' => $schedule->id,
-            'meal_id' => $meal->id,
+            'exercise_id' => $exercise->id,
         ];
     }
 }

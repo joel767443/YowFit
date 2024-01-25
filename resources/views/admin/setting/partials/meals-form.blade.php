@@ -1,6 +1,6 @@
     <label>From</label>
 <label>
-    <select class="form-control" name="meal_time_from[{{ $index }}]" id="meal_time_from_{{ $index }}">
+    <select class="form-control" name="meal_start_time[{{ $index }}]" id="meal_start_time_{{ $index }}">
         <option value="6:00" {{ $settings->to == '6:00' ? 'selected' : '' }}>6:00</option>
         <option value="8:00" {{ $settings->to == '8:00' ? 'selected' : '' }}>8:00</option>
         <option value="12:00" {{ $settings->to == '12:00' ? 'selected' : '' }}>12:00</option>
@@ -8,7 +8,7 @@
 </label>
 <label>To</label>
 <label>
-    <select class="form-control" name="meal_time_to[{{ $index }}]" id="meal_time_to_{{ $index }}">
+    <select class="form-control" name="meal_end_time[{{ $index }}]" id="meal_end_time_{{ $index }}">
         <option value="9:00" {{ $settings->to == '9:00' ? 'selected' : '' }}>9:00</option>
         <option value="10:00" {{ $settings->to == '10:00' ? 'selected' : '' }}>10:00</option>
         <option value="13:00" {{ $settings->to == '13:00' ? 'selected' : '' }}>13:00</option>

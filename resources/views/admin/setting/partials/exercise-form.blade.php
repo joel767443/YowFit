@@ -1,7 +1,7 @@
 <label>From</label>
 
 <label>
-    <select class="form-control" name="exercise_time_from" id="exercise_time_from">
+    <select class="form-control" name="start_time" id="start_time">
         <option value="6:00">6:00</option>
         <option value="8:00">8:00</option>
         <option value="12:00">12:00</option>
@@ -11,7 +11,7 @@
 <label>To</label>
 
 <label>
-    <select class="form-control" name="exercise_time_to" id="exercise_time_to">
+    <select class="form-control" name="end_time" id="end_time">
         <option value="9:00">9:00</option>
         <option value="10:00">10:00</option>
         <option value="13:00">13:00</option>

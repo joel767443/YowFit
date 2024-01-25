@@ -11,7 +11,7 @@
     </div>
 
     @foreach($exerciseTimes as $time)
-        <div> <b>From :</b> {{ $time->exercise_time_from }}  <b>To :</b> {{ $time->exercise_time_to }} <b>Type : </b>{{ $time->exercise->name }}</div>
+        <div> <b>From :</b> {{ $time->start_time }}  <b>To :</b> {{ $time->end_time }} <b>Type : </b>{{ $time->exercise->name }}</div>
     @endforeach
 
     <div id="exerciseTime"></div>

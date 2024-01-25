@@ -33,14 +33,8 @@ class ScheduleRepository extends BaseRepository implements ScheduleRepositoryInt
     {
         return Cache::remember("user_schedule_{$userId}_$dayOfWeek", 1440, function () use ($userId, $dayOfWeek) {
             return $this->model::with([
-                'exerciseTimes' => function ($query) {
-                    $query->orderBy('exercise_time_from');
-                },
-                'eatingTimes' => function ($query) {
-                    $query->orderBy('eating_time_from');
-                },
-                'relaxationTimes' => function ($query) {
-                    $query->orderBy('time');
+                'scheduleTimes' => function ($query) {
+                    $query->orderBy('start_time');
                 },
             ])
                 ->where('user_id', $userId)

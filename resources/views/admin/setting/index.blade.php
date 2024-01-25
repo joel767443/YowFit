@@ -116,17 +116,17 @@
 
         $('#saveExercise').click(function () {
 
-            let timeFrom = $("#exercise_time_from").val()
-            let timeTo = $("#exercise_time_to").val()
+            let timeFrom = $("#start_time").val()
+            let timeTo = $("#end_time").val()
             let data = {
-                'exercise_time_from': timeFrom,
-                'exercise_time_to': timeTo,
+                'start_time': timeFrom,
+                'end_time': timeTo,
                 'exercise_id': $("#exercise_id").val(),
                 'schedule_id': 1,  // Adjust this as needed
             }
 
             post(data, 'exerciseTimes').then(function (response) {
-                console.log(response.exerciseTime.exercise_time_from)
+                console.log(response.exerciseTime.start_time)
                 $('#exerciseTime').append("<div><b>From :</b> "+timeFrom+" <b>To :</b> "+timeTo+" <b>Type : "+response.exerciseTime.exercise+"</div>")
             })
         })

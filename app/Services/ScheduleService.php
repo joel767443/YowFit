@@ -12,32 +12,19 @@ class ScheduleService
      * @param $schedule
      * @return array
      */
-    public static function formatSchedule($schedule): array
+    public static function formatScheduleData($schedule): array
     {
-        $result = [
+        $data = [
             $schedule->wakeup_time => 'wakeup time',
             $schedule->sleeping_time => 'time to sleep',
         ];
 
-        $activityMappings = [
-            'exerciseTimes' => ['prefix' => 'Exercise - ', 'property' => 'exercise'],
-            'eatingTimes' => ['prefix' => 'Meal - ', 'property' => 'meal'],
-            'relaxationTimes' => ['prefix' => 'Relax - ', 'property' => null],
-        ];
-
-        foreach ($activityMappings as $activityType => $config) {
-            foreach ($schedule->{$activityType} as $activityTime) {
-                $prefix = $config['prefix'];
-                $property = $config['property'];
-
-                $description = $property ? $activityTime->$property->name . " (" . $activityTime->$property->description . ")" : $activityTime->description;
-
-                $result[$activityTime->time] = $prefix . $description;
-            }
+        foreach ($schedule->scheduleTimes as $exerciseTime) {
+            $activity = $exerciseTime->scheduleable->name . " (" . $exerciseTime->scheduleable->description . ")";
+            $data[$exerciseTime->start_time] = $activity;
         }
 
-        ksort($result);
-
-        return $result;
+        ksort($data);
+        return $data;
     }
 }

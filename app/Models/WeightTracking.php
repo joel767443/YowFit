@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Class WeightTracking
  * @method static create(array $array)
  * @method static where(string $string, int|string|null $id)
+ * @method static select(string $string, string $string1, string $string2)
  * @property int user_id
  * @property double weight
  */
@@ -28,6 +29,11 @@ class WeightTracking extends Model
     protected $fillable = [
         'user_id',
         'weight',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime',
     ];
 
     /**

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @method static create(string[] $array)
  * @method static search(mixed $input)
  * @method static pluck(string $string)
+ * @method static inRandomOrder()
  * @property integer $id
  */
 class Exercise extends Model
@@ -28,12 +29,11 @@ class Exercise extends Model
     ];
 
     /**
-     * Get the exercise times associated with the exercise.
-     * @return HasMany
+     * @return MorphMany
      */
-    public function exerciseTimes(): HasMany
+    public function scheduleTimes(): MorphMany
     {
-        return $this->hasMany(ExerciseTime::class);
+        return $this->morphMany(ScheduleTime::class, 'scheduleable');
     }
 
     /**

@@ -24,10 +24,7 @@ class Schedule extends Model
         'user_id',
         'day_of_week',
         'wakeup_time',
-        'exercise_time',
-        'eating_time',
-        'sleeping_time',
-        'relaxation_time',
+        'schedule_time',
     ];
 
     /**
@@ -39,38 +36,12 @@ class Schedule extends Model
     }
 
     /**
-     * Get the exercise times associated with the schedule.
-     * @return hasMany
-     */
-    public function exerciseTimes(): hasMany
-    {
-        return $this->hasMany(ExerciseTime::class);
-    }
-
-    /**
-     * Get the eating times associated with the schedule.
-     * @return hasMany
-     */
-    public function eatingTimes(): hasMany
-    {
-        return $this->hasMany(EatingTime::class);
-    }
-
-    /**
      * Get the relaxation times associated with the schedule.
      * @return hasMany
      */
-    public function relaxationTimes(): hasMany
+    public function scheduleTimes(): hasMany
     {
-        return $this->hasMany(RelaxationTime::class);
+        return $this->hasMany(ScheduleTime::class);
     }
 
-    /**
-     * Get the relaxation times associated with the schedule.
-     * @return hasMany
-     */
-    public function workTimes(): hasMany
-    {
-        return $this->hasMany(WorkTime::class);
-    }
 }

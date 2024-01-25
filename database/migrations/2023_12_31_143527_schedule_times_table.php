@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('work_times', function (Blueprint $table) {
+        Schema::create('schedule_times', function (Blueprint $table) {
             $table->id();
-            $table->time('work_time_from');
-            $table->time('work_time_to');
-            $table->enum('type', ['Job', 'Personal', 'Freelance']);
+            $table->time('start_time');
+            $table->time('end_time');
             $table->foreignId('schedule_id')->index()->constrained();
+            $table->unsignedBigInteger('scheduleable_id');
+            $table->string('scheduleable_type');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('work_times');
+        Schema::dropIfExists('schedule_times');
     }
 };

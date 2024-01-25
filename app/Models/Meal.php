@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @method static create(array $array)
@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static when(mixed $keyword, \Closure $param)
  * @method static search(mixed $input)
  * @method static pluck(string $string)
+ * @method static inRandomOrder()
  * @property integer $id
  */
 class Meal extends Model
@@ -31,12 +32,11 @@ class Meal extends Model
     ];
 
     /**
-     * Get the eating times associated with the meal.
-     * @return HasMany
+     * @return MorphMany
      */
-    public function eatingTimes(): HasMany
+    public function scheduleTimes(): MorphMany
     {
-        return $this->hasMany(EatingTime::class);
+        return $this->morphMany(ScheduleTime::class, 'scheduleable');
     }
 
     /**

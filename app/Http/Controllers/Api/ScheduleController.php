@@ -37,7 +37,7 @@ class ScheduleController extends Controller
     {
         $currentDayOfWeek = $this->getCurrentDayOfWeek();
         $schedule = $this->scheduleRepository->getTodayScheduleForUser(auth()->id(), $currentDayOfWeek);
-        $result = ScheduleService::formatSchedule($schedule);
+        $result = ScheduleService::formatScheduleData($schedule);
 
         return FormatAPIResponse::format([
             'currentDayOfWeek' => $currentDayOfWeek,
