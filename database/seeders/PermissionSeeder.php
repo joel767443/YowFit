@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -25,5 +27,12 @@ class PermissionSeeder extends Seeder
 
         // Assign Permissions to Roles
         Role::findByName('admin')->givePermissionTo(['access-exercises', 'access-meals', 'access-users', 'access-exercise-types']);
+
+        $user = User::where('email', 'admin@yowfit.com')->first();
+        $role = Role::where('name', 'admin')->first();
+
+        if ($user && $role) {
+            $user->assignRole($role);
+        }
     }
 }
