@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static create(array $array)
  * @method static pluck(string $string)
+ * @method static inRandomOrder()
  * @property int $id
  * @property string name
  * @property string slug

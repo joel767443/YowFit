@@ -40,8 +40,8 @@ class ScheduleTimeControllerTest extends TestCase
         $scheduleTime = ScheduleTime::factory()->create();
 
         $fakeData = [
-            'start_time' => Carbon::now()->format('H:i'),
-            'end_time' => Carbon::now()->addHour()->format('H:i'),
+            'start_time' => '08:00',
+            'end_time' => '12:30',
             'schedule_id' => $scheduleTime->schedule_id,
             'scheduleable_id' => $scheduleTime->scheduleable_id,
             'scheduleable_type' => Exercise::class,

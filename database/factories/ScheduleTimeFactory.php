@@ -28,8 +28,8 @@ class ScheduleTimeFactory extends Factory
         $exercise = Exercise::factory()->create();
 
         return [
-            'start_time' => $this->faker->time,
-            'end_time' => $this->faker->time,
+            'start_time' => '12:00',
+            'end_time' => '13:00',
             'schedule_id' => $schedule->id,
             'scheduleable_id' => $exercise->id,
             'scheduleable_type' => Exercise::class,

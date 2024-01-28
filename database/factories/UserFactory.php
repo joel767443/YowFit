@@ -24,14 +24,14 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $userStatuses = UserStatus::pluck('id')->get();
+        $userStatuses = UserStatus::inRandomOrder()->first();
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => 'password',
             'remember_token' => Str::random(10),
-            'user_status_id' => $userStatuses->random,
+            'user_status_id' => $userStatuses->id,
         ];
     }
 }
