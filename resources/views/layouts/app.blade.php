@@ -53,7 +53,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                             </li>
-                            @if(auth()->user()->hasRole('admin'))
+                            @if(auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                                 <li class="nav-item">
                                     <a href="{{ url('meals') }}" class="nav-link">Meals</a>
                                 </li>

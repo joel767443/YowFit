@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @method static create(string[] $array)
- * @method static search(mixed $input)
+ * @method static search(string $input)
  * @method static pluck(string $string)
  * @method static inRandomOrder()
  * @property integer $id

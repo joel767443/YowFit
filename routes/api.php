@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('users', UserController::class);
     Route::resource('meals', MealController::class);
     Route::resource('exercises', ExerciseController::class);
-    Route::get('my-schedule', [ScheduleController::class, 'show']);
+    Route::resource('schedules', ScheduleController::class);
     Route::get('weight-tracking', [WeightTrackingController::class, 'show']);
     Route::post('weight-tracking/log', [WeightTrackingController::class, 'store'])->name('weight-log.store');
+    Route::post('logout', [UserController::class, "logout"]);
 });

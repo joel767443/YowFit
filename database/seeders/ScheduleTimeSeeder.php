@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Database\Seeders;
 
 use App\Models\Exercise;
@@ -21,27 +22,27 @@ class ScheduleTimeSeeder extends Seeder
      */
     public function run(): void
     {
-
         $timeSlots = $this->getTimeSlots();
         $mondayToFridaySchedules = Schedule::all();
 
         // Loop through each schedule
         foreach ($mondayToFridaySchedules as $schedule) {
-
+            $meal = Meal::inRandomOrder()->first();
             // Add 3 meals
-            for ($i = 0; $i < 3; $i++) {
-                $meal = Meal::inRandomOrder()->first();
+            for ($i = 0; $i < 2; $i++) {
+
                 $timeSlotIndex = array_rand($timeSlots);
                 $timeSlot = $timeSlots[$timeSlotIndex];
 
                 $scheduleTime = new ScheduleTime([
                     'start_time' => $timeSlot['start_time'],
-                    'end_time' => $timeSlot['end_time'],
+                    'end_time' =>  $timeSlot['end_time'],
                     'schedule_id' => $schedule->id
                 ]);
 
                 $meal->scheduleTimes()->save($scheduleTime);
             }
+
 
             // Add 2 exercises
             for ($i = 0; $i < 2; $i++) {
@@ -58,7 +59,7 @@ class ScheduleTimeSeeder extends Seeder
                 $exercise->scheduleTimes()->save($scheduleTime);
             }
 
-            // Add 4 exercises
+            // Add 4 work
             for ($i = 0; $i < 4; $i++) {
                 $work = Work::inRandomOrder()->first();
                 $timeSlotIndex = array_rand($timeSlots);
@@ -95,20 +96,20 @@ class ScheduleTimeSeeder extends Seeder
      */
     private function getTimeSlots(): array
     {
-        $start = Carbon::parse('6:00 AM');
-        $end = Carbon::parse('10:00 PM');
+        $start = Carbon::parse('6:01 AM');
+        $end = Carbon::parse('9:00 PM');
 
         $timeSlots = [];
         $current = clone $start;
 
         while ($current <= $end) {
             $startTime = $current->format('H:i:s');
-            $current->addMinutes(30);
+            $current->addMinutes(60);
             $endTime = $current->format('H:i:s');
 
             $timeSlots[] = ['start_time' => $startTime, 'end_time' => $endTime];
         }
 
-        return $timeSlots;
+        return array_slice($timeSlots, 0, 5);
     }
 }

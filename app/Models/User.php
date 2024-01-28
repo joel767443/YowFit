@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Requests\UserRequest;
 use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -20,15 +22,15 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static pluck(string $string)
  * @method static when(mixed $search, Closure $param)
  * @method static where(string $string, string $string1)
+ * @method static search(string $string)
  * @property int $id
  * @property Schedule $schedules
- * @property UserType $userType
  */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
-    const ROLE_ADMIN = 'admin';
+    const ROLE_ADMIN = 'Admin';
 
     /**
      * The attributes that are mass assignable.
@@ -39,8 +41,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'user_type_id',
         'user_status_id',
+        'roles',
     ];
 
     /**
@@ -62,22 +64,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return self::ROLE_ADMIN === $this->userType->name;
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function userType(): BelongsTo
-    {
-        return $this->belongsTo(UserType::class);
-    }
 
     /**
      * @return BelongsTo
@@ -103,6 +89,17 @@ class User extends Authenticatable
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
+    }
+
+
+    /**
+     * @param array $roleIds
+     * @return void
+     */
+    public function addRoles(array $roleIds): void
+    {
+        $roles = Role::whereIn('id', $roleIds)->get();
+        $this->syncRoles($roles);
     }
 
 }

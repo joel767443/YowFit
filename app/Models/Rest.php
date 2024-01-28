@@ -19,6 +19,12 @@ class Rest extends Model
      */
     protected $table = 'rest';
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+    ];
+
     /**
      * @return MorphMany
      */

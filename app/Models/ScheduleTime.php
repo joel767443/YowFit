@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -23,14 +24,26 @@ class ScheduleTime extends Model
         'start_time',
         'end_time',
         'schedule_id',
-        'exercise_id',
+        'scheduleable_id',
+        'scheduleable_type',
     ];
 
-    /**
+        /**
      * @return MorphTo
      */
     public function scheduleable(): MorphTo
     {
         return $this->morphTo();
     }
+
+    /**
+     * Define the inverse relationship with Schedule model.
+     *
+     * @return BelongsTo
+     */
+    public function schedule(): BelongsTo
+    {
+        return $this->belongsTo(Schedule::class);
+    }
+
 }

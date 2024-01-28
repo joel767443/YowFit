@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static create(array $array)
  * @method static where(string $string, int|string|null $id)
  * @method static select(string $string, string $string1, string $string2)
+ * @method static whereWeight(string $string, float $param)
  * @property int user_id
  * @property double weight
  */

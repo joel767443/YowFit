@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -119,16 +118,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return JsonResponse
-     */
-    public function logout(): JsonResponse
-    {
-        auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
-    }
     /**
      * Refresh a token.
      *

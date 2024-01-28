@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserType;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Faker\Factory as Faker;
 use Spatie\Permission\Models\Role;
 
 /**
@@ -18,11 +18,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $adminRole = Role::where('name', 'Admin')->first();
+        $normalRole = Role::where('name', 'Normal')->first();
+
+        $adminUser = User::create([
             'name' => 'Admin User',
             'email' => 'admin@yowfit.com',
             'password' => Hash::make('password'),
-            'user_type_id' => 1,
         ]);
+
+        $normalUser = User::create([
+            'name' => 'Normal User',
+            'email' => 'normal@yowfit.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        if ($adminUser && $normalUser && $adminRole && $normalRole) {
+            $adminUser->assignRole($adminRole);
+            $normalUser->assignRole($normalRole);
+        }
     }
 }

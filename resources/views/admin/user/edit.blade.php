@@ -38,10 +38,12 @@
                                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="role">Role:</label>
-                                <select class="form-control" id="role" name="user_type_id">
-                                    @foreach($userTypes as $userType)
-                                    <option value="{{ $userType->id }}" {{ $userType->slug === $user->userType->slug ? 'selected' : '' }}> {{ $userType->name }} </option>
+                                <label for="role">Roles:</label>
+                                <select class="form-control" id="role" name="roles[]" multiple>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

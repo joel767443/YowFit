@@ -31,11 +31,15 @@
                             <dt class="col-sm-3">Created At:</dt>
                             <dd class="col-sm-9">{{ $user->created_at }}</dd>
 
-                            <dt class="col-sm-3">Role:</dt>
-                            <dd class="col-sm-9">{{ $user->userType->name }}</dd>
-
                             <dt class="col-sm-3">Status:</dt>
                             <dd class="col-sm-9">{{ $user->userStatus->name }}</dd>
+
+                            <dt class="col-sm-3">Roles:</dt>
+                            <dd class="col-sm-9">
+                                @foreach($user->roles as $role)
+                                    <div> {{ $role->name }}</div>
+                                @endforeach
+                            </dd>
                         </dl>
                     </div>
 

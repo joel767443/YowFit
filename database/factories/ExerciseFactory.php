@@ -24,7 +24,7 @@ class ExerciseFactory extends Factory
         return [
             'name' =>  $this->faker->name,
             'description' =>  $this->faker->text,
-            'link' =>  $this->faker->text,
+            'link' =>  $this->faker->url,
             'exercise_type_id' => $exerciseType->id,
         ];
     }

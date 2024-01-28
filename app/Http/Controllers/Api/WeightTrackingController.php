@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
  */
 class WeightTrackingController extends Controller
 {
-
     protected WeightTrackingRepositoryInterface $weightTrackingRepository;
     /**
      * WeightTrackingController constructor.

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserRequest
@@ -27,9 +28,10 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'user_type_id' => 'exists:user_types,id',
+            'email' => 'required|email' . (!$this->isMethod("PUT") ? '|unique:users' : ''),
             'user_status_id' => 'exists:user_statuses,id',
+            'roles' => 'required|array',
+            'roles.*' => 'exists:roles,id',
             'password' => 'string|min:8',
         ];
     }

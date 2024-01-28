@@ -24,14 +24,15 @@ class ScheduleTimeFactory extends Factory
      */
     public function definition(): array
     {
-        $schedule = Schedule::factory()->create();
+        $schedule = Schedule::inRandomOrder()->first();
         $exercise = Exercise::factory()->create();
 
         return [
             'start_time' => $this->faker->time,
             'end_time' => $this->faker->time,
             'schedule_id' => $schedule->id,
-            'exercise_id' => $exercise->id,
+            'scheduleable_id' => $exercise->id,
+            'scheduleable_type' => Exercise::class,
         ];
     }
 }

@@ -18,6 +18,12 @@ class Work extends Model
      */
     protected $table = 'work';
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+    ];
+
     /**
      * @return MorphMany
      */

@@ -1,5 +1,6 @@
 services:
     laravel.test:
+        container_name: code
         build:
             context: ./docker/8.3
             dockerfile: Dockerfile
@@ -28,6 +29,9 @@ services:
             - soketi
             - selenium
     mysql:
+        container_name: mysql-database
+        tmpfs:
+            - /var/lib/mysql
         image: 'mysql/mysql-server:8.0'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
@@ -52,6 +56,7 @@ services:
             retries: 3
             timeout: 5s
     redis:
+        container_name: redis
         image: 'redis:alpine'
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
@@ -67,6 +72,7 @@ services:
             retries: 3
             timeout: 5s
     mailpit:
+        container_name: mailpit
         image: 'axllent/mailpit:latest'
         ports:
             - '${FORWARD_MAILPIT_PORT:-1025}:1025'
@@ -74,6 +80,7 @@ services:
         networks:
             - sail
     soketi:
+        container_name: soketi
         image: 'quay.io/soketi/soketi:latest-16-alpine'
         environment:
             SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
@@ -87,6 +94,7 @@ services:
         networks:
             - sail
     selenium:
+        container_name: selenium
         image: selenium/standalone-chrome
         extra_hosts:
             - 'host.docker.internal:host-gateway'

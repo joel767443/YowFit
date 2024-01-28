@@ -29,11 +29,11 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'user_type_id' => UserType::factory()->create(),
-            'user_status_id' => UserStatus::factory()->create(),
             'email_verified_at' => now(),
             'password' => 'password',
             'remember_token' => Str::random(10),
+            'user_status_id' => rand(1, 2),
+//            'roles' => [rand(1, 2)],
         ];
     }
 

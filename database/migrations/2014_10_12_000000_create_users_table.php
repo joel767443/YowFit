@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId("user_type_id")->default(2);
             $table->foreignId("user_status_id")->default(1);
             $table->string('password');
             $table->softDeletes();

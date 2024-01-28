@@ -8,7 +8,7 @@
                     <div class="card-header float-start">
                         <h5 class="float-start">Weight Log</h5>
                         <span class="float-end">
-                        <a href="{{ route('weight-log.index') }}" class="btn btn-sm btn-success">Log</a>
+                        <a href="{{ route('weight-tracking.index') }}" class="btn btn-sm btn-success">Log</a>
                     </span>
                     </div>
 

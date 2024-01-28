@@ -29,7 +29,7 @@ class PermissionSeeder extends Seeder
         Role::findByName('admin')->givePermissionTo(['access-exercises', 'access-meals', 'access-users', 'access-exercise-types']);
 
         $user = User::where('email', 'admin@yowfit.com')->first();
-        $role = Role::where('name', 'admin')->first();
+        $role = Role::where('name', 'Admin')->first();
 
         if ($user && $role) {
             $user->assignRole($role);

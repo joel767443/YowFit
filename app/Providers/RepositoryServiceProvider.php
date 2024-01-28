@@ -19,7 +19,6 @@ use App\Repositories\MealTypeRepository;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\UserStatusRepository;
-use App\Repositories\UserTypeRepository;
 use App\Repositories\WeightTrackingRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\MealRepositoryInterface;
@@ -44,7 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         ScheduleRepositoryInterface::class => ScheduleRepository::class,
         UserRepositoryInterface::class => UserRepository::class,
         UserStatusRepositoryInterface::class => UserStatusRepository::class,
-        UserTypeRepositoryInterface::class => UserTypeRepository::class,
+
         WeightTrackingRepositoryInterface::class => WeightTrackingRepository::class,
     ];
 
