@@ -63,7 +63,7 @@ jobs:
         run: php artisan key:generate
 
       - name: run dev
-        run: npm run dev
+        run: npm run build
 
       - name: Run PHPUnit tests
         run: ./vendor/bin/phpunit
