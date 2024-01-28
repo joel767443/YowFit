@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * @method static create(array $array)
  * @method static inRandomOrder()
+ * @property int $id
+ * @property ScheduleTime $scheduleTimes
  */
 class Rest extends Model
 {
@@ -19,6 +21,9 @@ class Rest extends Model
      */
     protected $table = 'rest';
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'name',
         'slug',

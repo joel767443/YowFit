@@ -62,7 +62,7 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate
 
-      - name: run dev
+      - name: run build
         run: npm run build
 
       - name: Run PHPUnit tests

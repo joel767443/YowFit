@@ -7,6 +7,9 @@ use App\Models\Meal;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class MealTypeTest
+ */
 class MealTypeTest extends TestCase
 {
     use RefreshDatabase;

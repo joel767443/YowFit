@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\Rest;
 use App\Models\Schedule;
-use App\Models\ScheduleTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -30,6 +29,7 @@ class RestTest extends TestCase
     /** @test */
     public function it_has_schedule_times_relationship()
     {
+        /** @var Rest $rest */
         $rest = Rest::factory()->create();
         $scheduleTime = $rest->scheduleTimes()->create([
             'start_time' => '06:00',

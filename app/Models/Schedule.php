@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 
 /**
@@ -14,7 +13,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static create(string[] $array)
  * @method static inRandomOrder()
  * @method static select(string $string, string $string1)
- * @property mixed $id
+ * @property int $id
+ * @property ScheduleTime $scheduleTimes
  */
 class Schedule extends Model
 {

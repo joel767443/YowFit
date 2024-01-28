@@ -30,6 +30,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
+    /**
+     *
+     */
     const ROLE_ADMIN = 'Admin';
 
     /**

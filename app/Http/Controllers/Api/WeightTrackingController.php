@@ -46,7 +46,7 @@ class WeightTrackingController extends Controller
             $createdWeightLog = $this->weightTrackingRepository->create($request->validated());
             return FormatAPIResponse::format($createdWeightLog, $request);
         } catch (Exception $e) {
-            return FormatAPIResponse::formatException($e->getMessage());
+            return FormatAPIResponse::formatException($e->getMessage(), $e->getCode());
         }
     }
 }

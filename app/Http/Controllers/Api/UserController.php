@@ -11,6 +11,9 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserController
+ */
 class UserController extends Controller
 {
     /**

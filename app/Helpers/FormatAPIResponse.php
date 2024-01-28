@@ -28,13 +28,14 @@ class FormatAPIResponse
 
     /**
      * @param string $message
+     * @param $code
      * @return JsonResponse
      */
-    public static function formatException(string $message): JsonResponse
+    public static function formatException(string $message, $code): JsonResponse
     {
         return response()->json([
-            "status" => 500,
+            "status" => $code,
             "message" => $message,
-        ], 500);
+        ], $code);
     }
 }

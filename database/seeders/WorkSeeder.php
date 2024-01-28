@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Work;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
+/**
+ * Class WorkSeeder
+ */
 class WorkSeeder extends Seeder
 {
     /**

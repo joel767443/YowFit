@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class WeightTrackingTest
+ */
 class WeightTrackingTest extends TestCase
 {
     use RefreshDatabase;

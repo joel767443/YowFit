@@ -61,7 +61,7 @@ class MealController extends Controller
                 $this->mealRepository->create($request->validated()), $request
             );
         } catch (Exception $e) {
-            return FormatAPIResponse::formatException($e->getMessage());
+            return FormatAPIResponse::formatException($e->getMessage(), $e->getCode());
         }
     }
 
@@ -77,7 +77,7 @@ class MealController extends Controller
                 $this->mealRepository->update($meal, $request->validated()), $request
             );
         } catch (Exception $e) {
-            return FormatAPIResponse::formatException($e->getMessage());
+            return FormatAPIResponse::formatException($e->getMessage(), $e->getCode());
         }
     }
 }

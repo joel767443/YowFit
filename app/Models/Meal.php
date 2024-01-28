@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,11 +11,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 /**
  * @method static create(array $array)
  * @method static paginate(mixed $env)
- * @method static when(mixed $keyword, \Closure $param)
+ * @method static when(mixed $keyword, Closure $param)
  * @method static search(mixed $input)
  * @method static pluck(string $string)
  * @method static inRandomOrder()
  * @property integer $id
+ * @property ScheduleTime $scheduleTimes
  */
 class Meal extends Model
 {

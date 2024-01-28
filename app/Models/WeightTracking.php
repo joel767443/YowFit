@@ -32,6 +32,9 @@ class WeightTracking extends Model
         'weight',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime',

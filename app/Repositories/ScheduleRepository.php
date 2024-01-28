@@ -4,9 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Schedule;
 use App\Repositories\Contracts\ScheduleRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
-
 
 /**
  * Class ScheduleRepository

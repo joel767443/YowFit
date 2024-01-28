@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Models\WeightTracking;
 use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * class WeightTrackingRepository

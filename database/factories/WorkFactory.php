@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\ExerciseType;
 use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,9 +17,6 @@ class WorkFactory extends Factory
      */
     public function definition(): array
     {
-        /** @var ExerciseType $exerciseType */
-        $exerciseType = ExerciseType::factory()->create();
-
         return [
             'name' =>  $this->faker->name,
             'slug' =>  $this->faker->name,

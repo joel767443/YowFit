@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\WeightTracking;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 /**

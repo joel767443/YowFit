@@ -8,8 +8,15 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+/**
+ * Class SiteController
+ */
 class SiteController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Factory|View
+     */
     public function index(Request $request): Factory|View
     {
         $mail = new Mail();

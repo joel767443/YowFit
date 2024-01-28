@@ -8,6 +8,9 @@ use App\Models\Schedule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class MealTest
+ */
 class MealTest extends TestCase
 {
     use RefreshDatabase;
@@ -48,6 +51,7 @@ class MealTest extends TestCase
     /** @test */
     public function it_has_schedule_times_relationship()
     {
+        /** @var Meal $meal */
         $meal = Meal::factory()->create();
         $scheduleTime = $meal->scheduleTimes()->create([
             'start_time' => '08:00',

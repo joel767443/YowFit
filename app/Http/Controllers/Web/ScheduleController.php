@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Schedule;
 use App\Repositories\Contracts\ScheduleRepositoryInterface;
-use App\Services\ScheduleService;
-use Carbon\Carbon;
-use Illuminate\View\View;
 
 /**
  * Class ScheduleController

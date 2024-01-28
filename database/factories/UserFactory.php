@@ -4,9 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use App\Models\UserStatus;
-use App\Models\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -26,24 +24,14 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $userStatuses = UserStatus::pluck('id')->get();
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => 'password',
             'remember_token' => Str::random(10),
-            'user_status_id' => rand(1, 2),
-//            'roles' => [rand(1, 2)],
+            'user_status_id' => $userStatuses->random,
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn(array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }

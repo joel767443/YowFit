@@ -14,11 +14,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static inRandomOrder()
  * @method static search(string $string)
  * @method static create(string[] $mealTypeData)
+ * @method static pluck(string $string)
  */
 class MealType extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'name',
         'slug',

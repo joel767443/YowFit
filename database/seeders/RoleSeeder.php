@@ -6,6 +6,9 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
 
+/**
+ * Class RoleSeeder
+ */
 class RoleSeeder extends Seeder
 {
     /**

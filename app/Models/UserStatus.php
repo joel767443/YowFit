@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create(array $array)
+ * @method static pluck(string $string)
  * @property int $id
  * @property string name
  * @property string slug
@@ -16,6 +17,9 @@ class UserStatus extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'name',
         'slug',

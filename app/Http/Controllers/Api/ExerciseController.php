@@ -66,7 +66,7 @@ class ExerciseController extends Controller
                 $this->exerciseRepository->create($request->validated()), $request
             );
         } catch (Exception $e) {
-            return FormatAPIResponse::formatException($e->getMessage());
+            return FormatAPIResponse::formatException($e->getMessage(), $e->getCode());
         }
     }
 
@@ -82,7 +82,7 @@ class ExerciseController extends Controller
                 $this->exerciseRepository->update($exercise, $request->validated()), $request
             );
         } catch (Exception $e) {
-            return FormatAPIResponse::formatException($e->getMessage());
+            return FormatAPIResponse::formatException($e->getMessage(), $e->getCode());
         }
     }
 }

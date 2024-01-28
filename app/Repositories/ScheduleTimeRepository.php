@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
-class ScheduleTimeRepository
+use App\Repositories\Contracts\ScheduleTimeRepositoryInterface;
+
+class ScheduleTimeRepository extends BaseRepository implements ScheduleTimeRepositoryInterface
 {
 
 }

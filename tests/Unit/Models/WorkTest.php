@@ -2,12 +2,14 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Exercise;
 use App\Models\Schedule;
 use App\Models\Work;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class WorkTest
+ */
 class WorkTest extends TestCase
 {
     use RefreshDatabase;
@@ -30,6 +32,7 @@ class WorkTest extends TestCase
     /** @test */
     public function it_has_schedule_times_relationship()
     {
+        /** @var Work $work */
         $work = Work::factory()->create();
         $schedule = Schedule::factory()->create();
 

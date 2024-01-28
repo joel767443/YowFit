@@ -6,10 +6,12 @@ use App\Models\Exercise;
 use App\Models\Schedule;
 use App\Models\User;
 use App\Models\UserStatus;
-use Database\Factories\UserStatusFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class ScheduleTest
+ */
 class ScheduleTest extends TestCase
 {
     use RefreshDatabase;
@@ -52,6 +54,7 @@ class ScheduleTest extends TestCase
     /** @test */
     public function it_has_schedule_times_relationship()
     {
+        /** @var Schedule $schedule */
         $schedule = Schedule::factory()->create();
         $exercise = Exercise::factory()->create();
         $scheduleTime = $schedule->scheduleTimes()->create([

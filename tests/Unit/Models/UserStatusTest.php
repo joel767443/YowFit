@@ -4,6 +4,9 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 
+/**
+ * Class UserStatusTest
+ */
 class UserStatusTest extends TestCase
 {
     /**

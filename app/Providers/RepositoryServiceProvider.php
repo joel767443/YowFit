@@ -9,7 +9,6 @@ use App\Repositories\Contracts\MealTypeRepositoryInterface;
 use App\Repositories\Contracts\ScheduleRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\UserStatusRepositoryInterface;
-use App\Repositories\Contracts\UserTypeRepositoryInterface;
 use App\Repositories\Contracts\WeightTrackingRepositoryInterface;
 use App\Repositories\ExerciseRepository;
 use App\Repositories\ScheduleTimeRepository;
@@ -34,7 +33,6 @@ class RepositoryServiceProvider extends ServiceProvider
      * @var array
      */
     protected array $repositories = [
-
         ExerciseRepositoryInterface::class => ExerciseRepository::class,
         ScheduleTimeRepositoryInterface::class => ScheduleTimeRepository::class,
         ExerciseTypeRepositoryInterface::class => ExerciseTypeRepository::class,
@@ -43,7 +41,6 @@ class RepositoryServiceProvider extends ServiceProvider
         ScheduleRepositoryInterface::class => ScheduleRepository::class,
         UserRepositoryInterface::class => UserRepository::class,
         UserStatusRepositoryInterface::class => UserStatusRepository::class,
-
         WeightTrackingRepositoryInterface::class => WeightTrackingRepository::class,
     ];
 
