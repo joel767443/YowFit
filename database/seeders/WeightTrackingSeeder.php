@@ -16,7 +16,7 @@ class WeightTrackingSeeder extends Seeder
      */
     public function run(): void
     {
-        $userId = User::where('email', 'admin@yowfit.com')->first()?->id;
+        $userId = User::where('email', 'test-admin@yowfit.com')->first()?->id;
 
         for ($i = 0; $i < 16; $i++) {
             $weight = 116.0 - ($i * 1.9);

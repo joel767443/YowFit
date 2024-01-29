@@ -21,15 +21,15 @@ class UsersTableSeeder extends Seeder
         $normalRole = Role::where('name', 'Normal')->first();
 
         $adminUser = User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@yowfit.com',
-            'password' => Hash::make('password'),
+            'name' => 'Test Admin',
+            'email' => env('TEST_ADMIN_EMAIL'),
+            'password' => Hash::make(env('TEST_PASSWORD')),
         ]);
 
         $normalUser = User::create([
-            'name' => 'Normal User',
-            'email' => 'normal@yowfit.com',
-            'password' => Hash::make('password'),
+            'name' => 'James Paterson',
+            'email' => env('TEST_USER_EMAIL'),
+            'password' => Hash::make(env('TEST_PASSWORD')),
         ]);
 
         if ($adminUser && $normalUser && $adminRole && $normalRole) {
