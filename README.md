@@ -116,6 +116,11 @@ cd YowFitWeb
 
 ./setup.sh
 
+open new tab and run to setup permissions
+
+- docker exec code chmod o+w ./storage/ -R
+- docker exec code chown www-data:www-data -R ./storage
+
 ## Technical
 ## Redis caching
 ## rabbitMQ for live notifications
