@@ -21,7 +21,7 @@ services:
         volumes:
             - '.:/var/www/html'
         networks:
-            - sail
+            - app-network
         depends_on:
             - mysql
             - redis
@@ -30,8 +30,6 @@ services:
             - selenium
     mysql:
         container_name: mysql-database
-        tmpfs:
-            - /var/lib/mysql
         image: 'mysql/mysql-server:8.0'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
@@ -43,32 +41,26 @@ services:
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - 'sail-mysql:/var/lib/mysql'
+            - 'mysql:/var/lib/mysql'
             - './docker/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
-            - sail
+            - app-network
         healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+
     redis:
         container_name: redis
         image: 'redis:alpine'
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'sail-redis:/data'
+            - 'redis:/data'
         networks:
-            - sail
+            - app-network
         healthcheck:
-            test:
-                - CMD
-                - redis-cli
-                - ping
+            test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
     mailpit:
@@ -78,7 +70,8 @@ services:
             - '${FORWARD_MAILPIT_PORT:-1025}:1025'
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
-            - sail
+            - app-network
+
     soketi:
         container_name: soketi
         image: 'quay.io/soketi/soketi:latest-16-alpine'
@@ -92,7 +85,8 @@ services:
             - '${PUSHER_PORT:-6001}:6001'
             - '${PUSHER_METRICS_PORT:-9601}:9601'
         networks:
-            - sail
+            - app-network
+
     selenium:
         container_name: selenium
         image: selenium/standalone-chrome
@@ -101,12 +95,13 @@ services:
         volumes:
             - '/dev/shm:/dev/shm'
         networks:
-            - sail
+            - app-network
+
 networks:
-    sail:
+    app-network:
         driver: bridge
 volumes:
-    sail-mysql:
+    mysql:
         driver: local
-    sail-redis:
+    redis:
         driver: local
