@@ -150,10 +150,11 @@ When the code is pushed/merged with master, github-actions.yml is processed to r
 
 ### Code Formatting and Setup
 Unit Testing and Code Coverage
-![coverage.png](..%2F..%2F..%2FPictures%2Fcoverage.png)
+![coverage](https://github.com/joel767443/YowFitWeb/assets/985991/c995faaf-1417-4ce8-8422-43b9ee270fb3)
+
 ### Database Structure
 *For now*
-![yowfit.png](..%2F..%2Fyowfit.png)
+![yowfit](https://github.com/joel767443/YowFitWeb/assets/985991/a05bb9f9-937c-4f56-9ead-55dc92542413)
 
 ### Tech Stack
 - PHP
