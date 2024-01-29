@@ -28,7 +28,7 @@ class ExerciseControllerTest extends TestCase
     {
         parent::setUp();
         Artisan::call('db:seed');
-        Sanctum::actingAs(User::where('email', 'admin@yowfit.com')->first());
+        Sanctum::actingAs(User::where('email', 'test-admin@yowfit.com')->first());
     }
 
     /**
