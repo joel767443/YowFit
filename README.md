@@ -146,11 +146,12 @@ http://localhost/
 
 http://localhost/home
 ### CI/CD
-When the code is pushed/merged with master, github-actions.yml is processed to run tests and deploy the code when successful.
+When the code is pushed/merged with the master branch, GitHub-actions.yml is processed to run tests and deploy the code when successful.
 
 ### Code Formatting and Setup
 Unit Testing and Code Coverage
 ![coverage](https://github.com/joel767443/YowFitWeb/assets/985991/c995faaf-1417-4ce8-8422-43b9ee270fb3)
+![cicd](https://github.com/joel767443/YowFitWeb/assets/985991/4e06f92d-7d73-4fe5-9681-ab9e9b423bd5)
 
 ### Database Structure
 *For now*
