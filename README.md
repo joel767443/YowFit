@@ -133,7 +133,7 @@ cd YowFitWeb
 ./setup.sh
 ```
 
-Open a new terminal tab, making sure you are still in the "YowFitWeb" directory, and run the following commands to set Laravel permissions:
+Open a new terminal tab, making sure you are still in the *YowFitWeb* directory, and run the following commands to set Laravel permissions:
 
 ```bash
 docker exec code chmod o+w ./storage/ -R
